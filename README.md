@@ -50,6 +50,8 @@ Regional processing retains **3,251,040 rainfall grid records**, **1,052,064 ERA
 
 ## Medallion workflow
 
+![AtlasPulse ETL architecture from source data through MinIO, Spark and Delta Lake, dbt, PostgreSQL, and the dashboards](docs/etl-architecture.png)
+
 ```text
 CHIRPS / ERA5-Land / OSM -> MinIO Landing -> Spark Delta Bronze
   -> validated Silver -> dbt Gold -> PostgreSQL + versioned MinIO exports
