@@ -1,0 +1,171 @@
+{
+  "built_at": "2026-11-07T17:24:37.176895+00:00",
+  "backend": "local Gold snapshot",
+  "publication_id": "44c63fc5134047d39e63f48dc115b37b",
+  "python_version": "3.12",
+  "gold_row_counts": {
+    "dim_location": 12,
+    "dim_month": 120,
+    "fact_climate_monthly": 1440,
+    "fact_infrastructure": 12,
+    "source_audit": 20,
+    "mart_monthly_anomalies": 1440,
+    "mart_water_year": 132,
+    "mart_site_trends": 12,
+    "mart_spatial_rainfall": 120
+  },
+  "files": {
+    ".gitignore": {
+      "bytes": 1001,
+      "sha256": "a9c7aad6448c07ce1bb34af3eea93035abeaa56ab59bec057ef6ee04e839e982"
+    },
+    ".streamlit/config.toml": {
+      "bytes": 378,
+      "sha256": "7c7b05e1b511223956b9df3e5ac7b74e8b611a1b635bd1facf610d3d682e25a7"
+    },
+    "INDICATORS.md": {
+      "bytes": 9943,
+      "sha256": "bb05cc3655759438adae5cf295ea1ba9c90b2105e98400b5533d36d23a7c6dda"
+    },
+    "README.md": {
+      "bytes": 3992,
+      "sha256": "8d65125c774c2d316b3aee9a633bb3d74a0214ed444e328edc5c4f3a87a3cdfa"
+    },
+    "dashboard/__init__.py": {
+      "bytes": 73,
+      "sha256": "27faf6a1da5fdfeef31d2e013863d71f120753553adeb7097898f7c98416aef6"
+    },
+    "dashboard/app.py": {
+      "bytes": 31905,
+      "sha256": "3964e10e7761b4b756704ca8b1d7f7a7aa023fc5f846879efc57d377a69e43d7"
+    },
+    "dashboard/charts.py": {
+      "bytes": 8669,
+      "sha256": "e780b0ac258c039f1885df48be7811ab2ed8e23fd87a8dbad62dfa9205bb2c88"
+    },
+    "dashboard/data.py": {
+      "bytes": 9217,
+      "sha256": "979f369743c3c8dd724047fb78a6f8cdf3556fd89acf18b3598a218000b0f329"
+    },
+    "dashboard/indicators.py": {
+      "bytes": 8210,
+      "sha256": "02e92886a98737d1f437f91e1fce98d0074bfbef64c329dbf66d7183f899b89c"
+    },
+    "data/analysis/indicator_catalog.csv": {
+      "bytes": 4990,
+      "sha256": "bd2d0b011928c42f1d91a06d91d6554da9624d4a0947e5f10b07e2fe7e828748"
+    },
+    "data/analysis/indicator_profiles_2015_2024.csv": {
+      "bytes": 1820,
+      "sha256": "69761efacafe8299b6df3deb442353f72ac0b35ee454f9f2ec62267ef3cba4af"
+    },
+    "data/gold/dim_location.csv": {
+      "bytes": 619,
+      "sha256": "9b33a7cc199382cf75bb0ff150b1c464ad820318e6f4b9646360ec56b9ae832d"
+    },
+    "data/gold/dim_month.csv": {
+      "bytes": 3676,
+      "sha256": "3bc35e1fe51895c31dd07441cd4c48900c37d3232e15654820e7ece367ad8ffe"
+    },
+    "data/gold/fact_climate_monthly.csv": {
+      "bytes": 147284,
+      "sha256": "70453a6b5933369d2c1b792abd4984017b5b28b22c061a24f09451a834af7f7c"
+    },
+    "data/gold/fact_infrastructure.csv": {
+      "bytes": 365,
+      "sha256": "6edff06186c444b9b5178687f96cef6a5b22879d28001d482b96107013142597"
+    },
+    "data/gold/footprint.geojson": {
+      "bytes": 1786,
+      "sha256": "7462ac0c798adf167fedf0143d898989a8db528a4d2d0fd7162fa54ebd961a6e"
+    },
+    "data/gold/mart_monthly_anomalies.csv": {
+      "bytes": 328022,
+      "sha256": "99e3809608592afb74fc5c0aea25b1475956e1e5e5ebf47e73dcf00ead6217e8"
+    },
+    "data/gold/mart_site_trends.csv": {
+      "bytes": 826,
+      "sha256": "37037be01d12590ded588cdd0fe0c9601b2df8ff9daadc58aaf83a3c79e7b581"
+    },
+    "data/gold/mart_spatial_rainfall.csv": {
+      "bytes": 7012,
+      "sha256": "8385f4fb77be181b4d2129674202c2373cc52a3d7c501c635bedcc3d01a3d646"
+    },
+    "data/gold/mart_water_year.csv": {
+      "bytes": 10259,
+      "sha256": "0fb42598fca5bbd51e087c36d9bb7d4c9b9dc7a7c2df7d9f7767a3d26cb5bffd"
+    },
+    "data/gold/osm.geojson": {
+      "bytes": 1972461,
+      "sha256": "9c76b013123882e2c88294ff1d8386685f8f4840f8633e5436dc6a0211db1456"
+    },
+    "data/gold/provenance.json": {
+      "bytes": 1104,
+      "sha256": "2e810bd6fed4600fd475e4e0447845acc970f2e727e7dc4e3a615ac6ec195675"
+    },
+    "data/gold/snapshot.json": {
+      "bytes": 387702,
+      "sha256": "2ad72aa94fdf46a897e6cad471eebcef3c8fc43707c1800e49f605e0e5b0febe"
+    },
+    "data/gold/source_audit.csv": {
+      "bytes": 2612,
+      "sha256": "71f4487cc18b729b5085a6d8ea6f13e8eb55e7c38a89c4ce61775ac29020cda0"
+    },
+    "data/metadata/climate_downloads.json": {
+      "bytes": 7250,
+      "sha256": "ca0b3e4753a5174825eb16ba88349455267b6a591a8d041e372f5df57dbcc763"
+    },
+    "data/metadata/dbt_run_results.json": {
+      "bytes": 38263,
+      "sha256": "b76805e9584e55fb3434704e751f8f37ba88bb4b377892253e1f9472d9c0a130"
+    },
+    "data/metadata/era5_downloads.json": {
+      "bytes": 6268,
+      "sha256": "681029c93b006aad461652289cc424a198ad04bb64abd735268e25e13839e7ed"
+    },
+    "data/metadata/processing_verification.json": {
+      "bytes": 359,
+      "sha256": "e12f864ca224270a5c6b9f97743d93147c60f5db9a079996ab36dfb861c46505"
+    },
+    "docs/screenshots/climate-explorer.png": {
+      "bytes": 256311,
+      "sha256": "9f0708d7de61ed36ab61f9891d76fb7e6d21429c7c5586802accb0409eaff374"
+    },
+    "docs/screenshots/compare-locations.png": {
+      "bytes": 208512,
+      "sha256": "17bc91cf00dfa156ee7093f9c35592e3f8a38450017fbe9478aa5c243fd46d18"
+    },
+    "docs/screenshots/data-methodology.png": {
+      "bytes": 223700,
+      "sha256": "486e00559471e0210e4dc17e29e62e759a5129819cc60fb0b7d4d8065ff13c90"
+    },
+    "docs/screenshots/indicators.png": {
+      "bytes": 202743,
+      "sha256": "1cb773e94c479dd5772b73f64fd402afa85981e617b196deb18af1c0c30c155e"
+    },
+    "docs/screenshots/infrastructure.png": {
+      "bytes": 183488,
+      "sha256": "a79dc1beca2255392c0d0c363e846b3395c6db14f15e862f8f2e0560dde4cdbb"
+    },
+    "docs/screenshots/manifest.json": {
+      "bytes": 2111,
+      "sha256": "32dcbc435f2dfceed5a24db4472c7de0d0d4680a97770fdf0f7721cde380b773"
+    },
+    "docs/screenshots/overview.png": {
+      "bytes": 193719,
+      "sha256": "3f637a107b92443f63fd4ad5549875ffa5f2ccc996af72c5eb015210b53dbe8f"
+    },
+    "docs/screenshots/water-climate-insights.png": {
+      "bytes": 271102,
+      "sha256": "bcc75fb44b04efb55c0d60a19514ac8f68bce21b74ef6a0b9f8cd68416aa9180"
+    },
+    "requirements.txt": {
+      "bytes": 73,
+      "sha256": "81dd4e6f5cf8f66052016bd23b587d513ace5bd8f5f6d8c7e68f332b1faa2f59"
+    },
+    "streamlit_app.py": {
+      "bytes": 340,
+      "sha256": "7f346ed097e0b3f69dd90440bc88d145b360ccaddb6f8f89092263c255a8cdae"
+    }
+  }
+}

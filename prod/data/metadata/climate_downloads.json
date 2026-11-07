@@ -1,0 +1,188 @@
+{
+  "project": "Morocco Climate & Water Observatory",
+  "dashboard": "Power BI",
+  "source": "UCSB Climate Hazards Center, CHIRPS v3",
+  "source_url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/",
+  "coverage": "Global source archives; Morocco clipping is not yet applied.",
+  "years": [
+    2015,
+    2024
+  ],
+  "minimum_bytes": 1073741825,
+  "files": [
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2015.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2015.monthly.nc",
+      "year": 2015,
+      "bytes": 200511845,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "6cfce00e8e0d34f6236aca24865b555a039b02f03444123db0cc260163bf9225",
+      "verified_at_utc": "2026-11-06T19:32:21.853459+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2016.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2016.monthly.nc",
+      "year": 2016,
+      "bytes": 200317810,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "89ed38c75a98af3854fb7b449bbbf469188bb773b29e47ba0e0bb2d387803f2c",
+      "verified_at_utc": "2026-11-06T19:32:24.001160+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2017.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2017.monthly.nc",
+      "year": 2017,
+      "bytes": 198005527,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "43763b06f791646cd918a67b97ff655191905b85d5170d907ac9b4d2c20f6fcc",
+      "verified_at_utc": "2026-11-06T19:32:25.745173+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2018.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2018.monthly.nc",
+      "year": 2018,
+      "bytes": 201090398,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "a937333f9bb1ca412d2db0806274de5ba159901fb0e2da372f72aee9d0743e29",
+      "verified_at_utc": "2026-11-06T19:32:27.497785+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2019.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2019.monthly.nc",
+      "year": 2019,
+      "bytes": 199308505,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "150582e15500009093e7500e7115a4c0f516e9510d53775ffd969e0ba28a66d9",
+      "verified_at_utc": "2026-11-06T19:32:29.331977+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2020.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2020.monthly.nc",
+      "year": 2020,
+      "bytes": 193627719,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "116e0add1dc7df0168c275d457823b5d0cc52c0a9d0ee9db2b3b7c6c6f002375",
+      "verified_at_utc": "2026-11-06T19:32:31.110094+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2021.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2021.monthly.nc",
+      "year": 2021,
+      "bytes": 196014530,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "698b53d76114ce2e87cf009fe37cb51a65b1e1081ea1ecc28b5c978d4b5c6fc1",
+      "verified_at_utc": "2026-11-06T19:32:32.807150+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2022.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2022.monthly.nc",
+      "year": 2022,
+      "bytes": 192233101,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "34fcca1e0e54040354748d66d462388accfa841da792426948bbbe241d1db436",
+      "verified_at_utc": "2026-11-06T19:32:34.541256+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2023.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2023.monthly.nc",
+      "year": 2023,
+      "bytes": 197343872,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "6ebf8d7f1d5e53380c2283dd27ace3312df81f6db289d3a8731b3c633daf6d6b",
+      "verified_at_utc": "2026-11-06T19:32:36.238642+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    },
+    {
+      "path": "data/raw/chirps/chirps-v3.0.2024.monthly.nc",
+      "url": "https://data.chc.ucsb.edu/products/CHIRPS/v3.0/monthly/global/netcdf/by_year/chirps-v3.0.2024.monthly.nc",
+      "year": 2024,
+      "bytes": 196568061,
+      "http_content_length": null,
+      "last_modified": null,
+      "sha256": "632b324c57c32c86ef8e0f03e973da1c64f7f78d7a717ecc17ca207bb8363141",
+      "verified_at_utc": "2026-11-06T19:32:37.960908+00:00",
+      "validation": "NetCDF opened; precipitation variable and all 12 months verified",
+      "dimensions": {
+        "time": 12,
+        "latitude": 2400,
+        "longitude": 7200
+      },
+      "units": "mm/month"
+    }
+  ],
+  "total_climate_bytes": 1975021368,
+  "minimum_size_met": true,
+  "updated_at_utc": "2026-11-06T19:32:37.965843+00:00",
+  "final_verification_utc": "2026-11-06T19:32:44.245126+00:00"
+}

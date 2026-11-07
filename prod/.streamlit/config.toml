@@ -1,0 +1,21 @@
+[theme]
+base = "light"
+primaryColor = "#19745B"
+backgroundColor = "#F6F7F2"
+secondaryBackgroundColor = "#EAF0E5"
+textColor = "#19382E"
+font = "sans serif"
+
+[theme.sidebar]
+backgroundColor = "#123D32"
+secondaryBackgroundColor = "#244F40"
+textColor = "#EDF3E7"
+primaryColor = "#B8D4A0"
+
+[server]
+address = "0.0.0.0"
+port = 8501
+headless = true
+
+[browser]
+gatherUsageStats = false

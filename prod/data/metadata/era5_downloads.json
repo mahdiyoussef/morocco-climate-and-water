@@ -1,0 +1,69 @@
+{
+  "source": "ERA5-Land, delivered by Open-Meteo",
+  "model": "era5_land",
+  "variables": [
+    "temperature_2m",
+    "soil_moisture_0_to_7cm"
+  ],
+  "years": [
+    2015,
+    2024
+  ],
+  "locations": 12,
+  "hourly_records": 1052064,
+  "site_months": 1440,
+  "total_bytes": 31483726,
+  "files": {
+    "data/raw/era5/era5_land_2015.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2015-01-01&end_date=2015-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3143685,
+      "sha256": "15af4a4600cfd15a48b7f5267e5c420f5caf36d9ed9d1c911dcc0d778c327db5"
+    },
+    "data/raw/era5/era5_land_2016.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2016-01-01&end_date=2016-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3153535,
+      "sha256": "7f64ea7017d1ec26e9ce8a9962d2407ca22528a30737555706c53a9752290913"
+    },
+    "data/raw/era5/era5_land_2017.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2017-01-01&end_date=2017-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3144853,
+      "sha256": "f2da85c5fbb4a4b914b980eaee3261bee9196eaf4d672a202d39c01520aa502c"
+    },
+    "data/raw/era5/era5_land_2018.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2018-01-01&end_date=2018-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3142732,
+      "sha256": "f9855863eaeb6f5aff48871e9cb9e95977b959de11f72dc6532e0cbae4e6aede"
+    },
+    "data/raw/era5/era5_land_2019.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2019-01-01&end_date=2019-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3144891,
+      "sha256": "4d7f46905241c2a7350160d0a52349f5fd11550fb93e66f7a7ab6c32e8d2a91c"
+    },
+    "data/raw/era5/era5_land_2020.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2020-01-01&end_date=2020-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3155503,
+      "sha256": "f740882849e0ccbd20f2531297bbb156d7bd69f15f3a35b9e8ef62c818d8e7ba"
+    },
+    "data/raw/era5/era5_land_2021.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2021-01-01&end_date=2021-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3145323,
+      "sha256": "e4dd9265fcb0dc1472c0d7edcbc6984e5b17ddee8e20400e35678269dcf296e2"
+    },
+    "data/raw/era5/era5_land_2022.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2022-01-01&end_date=2022-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3147449,
+      "sha256": "6bdb1a01b0886ad41c008b94d2cc7df2e58a07b8a3b8c4b22804ec7dce2ac36d"
+    },
+    "data/raw/era5/era5_land_2023.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2023-01-01&end_date=2023-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3147449,
+      "sha256": "e587c3079bfa4cd6fd14ad5a084fde30411e3f4d40da567dc6c48ddca807e296"
+    },
+    "data/raw/era5/era5_land_2024.json": {
+      "url": "https://archive-api.open-meteo.com/v1/archive?latitude=35.7595%2C35.5785%2C34.0209%2C33.5731%2C34.0331%2C33.8935%2C34.6814%2C32.3373%2C31.6295%2C30.4278%2C30.9335%2C31.9314&longitude=-5.834%2C-5.3684%2C-6.8416%2C-7.5898%2C-5.0003%2C-5.5473%2C-1.9086%2C-6.3498%2C-7.9811%2C-9.5981%2C-6.937%2C-4.4244&start_date=2024-01-01&end_date=2024-12-31&hourly=temperature_2m%2Csoil_moisture_0_to_7cm&models=era5_land&timezone=UTC",
+      "bytes": 3158306,
+      "sha256": "f29e1d0b59017f9824a158107edc4edd389bb149a833092e9b61e944be4c0c9d"
+    }
+  },
+  "verified_at_utc": "2026-11-06T19:32:48.120029+00:00"
+}

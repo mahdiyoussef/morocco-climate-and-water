@@ -1,0 +1,83 @@
+{
+  "captured_at": "2026-11-07T17:24:28.037029+00:00",
+  "source": "http://localhost:8501",
+  "mode": "existing server",
+  "snapshot_publication_id": null,
+  "viewport": {
+    "width": 1440,
+    "height": 1300
+  },
+  "online_basemap": false,
+  "captures": [
+    {
+      "page": "Overview",
+      "file": "docs/screenshots/overview.png",
+      "year_scope": [
+        2024,
+        2024
+      ],
+      "bytes": 193719,
+      "sha256": "3f637a107b92443f63fd4ad5549875ffa5f2ccc996af72c5eb015210b53dbe8f"
+    },
+    {
+      "page": "Indicators",
+      "file": "docs/screenshots/indicators.png",
+      "year_scope": [
+        2015,
+        2024
+      ],
+      "bytes": 202743,
+      "sha256": "1cb773e94c479dd5772b73f64fd402afa85981e617b196deb18af1c0c30c155e"
+    },
+    {
+      "page": "Climate explorer",
+      "file": "docs/screenshots/climate-explorer.png",
+      "year_scope": [
+        2015,
+        2024
+      ],
+      "bytes": 256311,
+      "sha256": "9f0708d7de61ed36ab61f9891d76fb7e6d21429c7c5586802accb0409eaff374"
+    },
+    {
+      "page": "Compare locations",
+      "file": "docs/screenshots/compare-locations.png",
+      "year_scope": [
+        2024,
+        2024
+      ],
+      "bytes": 208512,
+      "sha256": "17bc91cf00dfa156ee7093f9c35592e3f8a38450017fbe9478aa5c243fd46d18"
+    },
+    {
+      "page": "Water & climate insights",
+      "file": "docs/screenshots/water-climate-insights.png",
+      "year_scope": [
+        2015,
+        2024
+      ],
+      "bytes": 271102,
+      "sha256": "bcc75fb44b04efb55c0d60a19514ac8f68bce21b74ef6a0b9f8cd68416aa9180"
+    },
+    {
+      "page": "Infrastructure",
+      "file": "docs/screenshots/infrastructure.png",
+      "year_scope": [
+        2024,
+        2024
+      ],
+      "bytes": 183488,
+      "sha256": "a79dc1beca2255392c0d0c363e846b3395c6db14f15e862f8f2e0560dde4cdbb"
+    },
+    {
+      "page": "Data & methodology",
+      "file": "docs/screenshots/data-methodology.png",
+      "year_scope": [
+        2024,
+        2024
+      ],
+      "bytes": 223700,
+      "sha256": "486e00559471e0210e4dc17e29e62e759a5129819cc60fb0b7d4d8065ff13c90"
+    }
+  ]
+}
