@@ -1,0 +1,19 @@
+morocco_observatory:
+  target: "{{ env_var('DBT_TARGET', 'local') }}"
+  outputs:
+    local:
+      type: duckdb
+      path: "{{ env_var('OBSERVATORY_WAREHOUSE', 'data/warehouse/observatory.duckdb') }}"
+      schema: gold
+      threads: 2
+    spark:
+      type: spark
+      method: thrift
+      host: "{{ env_var('SPARK_THRIFT_HOST', 'spark-thrift-server') }}"
+      port: 10000
+      schema: gold
+      user: hive
+      auth: NOSASL
+      threads: 2
+      connect_timeout: 120
+      retry_limit: 2

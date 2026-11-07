@@ -1,0 +1,54 @@
+{
+  "engine": "duckdb-local-verification",
+  "tables": [
+    {
+      "table": "chirps_grid",
+      "bronze_rows": 3251040,
+      "silver_rows": 3251040,
+      "rejected": 0,
+      "deduplicated": 0
+    },
+    {
+      "table": "chirps_sites",
+      "bronze_rows": 1440,
+      "silver_rows": 1440,
+      "rejected": 0,
+      "deduplicated": 0
+    },
+    {
+      "table": "era5_hourly",
+      "bronze_rows": 1052064,
+      "silver_rows": 1052064,
+      "rejected": 0,
+      "deduplicated": 0
+    },
+    {
+      "table": "locations",
+      "bronze_rows": 12,
+      "silver_rows": 12,
+      "rejected": 0,
+      "deduplicated": 0
+    },
+    {
+      "table": "osm_services",
+      "bronze_rows": 8652,
+      "silver_rows": 8652,
+      "rejected": 0,
+      "deduplicated": 0
+    },
+    {
+      "table": "osm_roads",
+      "bronze_rows": 12,
+      "silver_rows": 12,
+      "rejected": 0,
+      "deduplicated": 0
+    },
+    {
+      "table": "source_audit",
+      "bronze_rows": 20,
+      "silver_rows": 20,
+      "rejected": 0,
+      "deduplicated": 0
+    }
+  ]
+}

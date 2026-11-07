@@ -1,0 +1,22 @@
+name: morocco_observatory
+version: '1.0.0'
+config-version: 2
+profile: morocco_observatory
+model-paths: [models]
+macro-paths: [macros]
+test-paths: [tests]
+target-path: target
+clean-targets: [target, logs]
+models:
+  morocco_observatory:
+    staging:
+      +materialized: view
+      +schema: staging
+    gold:
+      +materialized: table
+      +schema: gold
+      +file_format: delta
+      +location_root: s3a://gold/morocco
+vars:
+  baseline_start_year: 2015
+  baseline_end_year: 2019

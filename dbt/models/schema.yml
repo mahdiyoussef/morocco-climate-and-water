@@ -1,0 +1,61 @@
+version: 2
+models:
+  - name: fact_climate_monthly
+    description: One sampled location per calendar month. Rainfall is a CHIRPS pixel total; temperature and moisture are means of ERA5-Land hours.
+    columns:
+      - name: site
+        tests: [not_null, {relationships: {arguments: {to: "ref('dim_location')", field: id}}}]
+      - name: year_month
+        tests: [not_null, {relationships: {arguments: {to: "ref('dim_month')", field: year_month}}}]
+      - name: rainfall_mm
+        tests: [not_null, {between: {arguments: {minimum: 0, maximum: 10000}}}]
+      - name: temperature_c
+        tests: [not_null, {between: {arguments: {minimum: -60, maximum: 65}}}]
+      - name: soil_moisture
+        tests: [not_null, {between: {arguments: {minimum: 0, maximum: 1}}}]
+  - name: dim_location
+    columns:
+      - name: id
+        tests: [unique, not_null]
+  - name: dim_month
+    columns:
+      - name: year_month
+        tests: [unique, not_null]
+  - name: fact_infrastructure
+    description: Contemporary mapped service objects and road segment length within 20 km; not service capacity or historical exposure.
+    columns:
+      - name: site
+        tests: [unique, not_null]
+      - name: water
+        tests: [{between: {arguments: {minimum: 0, maximum: 10000000}}}]
+  - name: mart_monthly_anomalies
+    description: Departures from the explicitly configured short 2015–2019 reference period, not official SPI or a 30-year climate normal.
+    columns:
+      - name: baseline_years
+        tests: [{between: {arguments: {minimum: 3, maximum: 30}}}]
+  - name: mart_water_year
+    description: October–September water-year totals. Incomplete boundary years are retained with is_complete=false.
+    columns:
+      - name: months_covered
+        tests: [{between: {arguments: {minimum: 1, maximum: 12}}}]
+  - name: mart_site_trends
+    description: Exploratory OLS slopes based on complete calendar years; not a forecast or significance claim.
+    columns:
+      - name: site
+        tests: [unique, not_null]
+  - name: mart_spatial_rainfall
+    description: Area-weighted rainfall across the source extract footprint, using latitude-dependent grid-cell weights; not an official national statistic.
+    columns:
+      - name: area_weighted_rainfall_mm
+        tests: [{between: {arguments: {minimum: 0, maximum: 10000}}}]
+      - name: valid_grid_cells
+        tests: [{between: {arguments: {minimum: 1, maximum: 10000000}}}]
+exposures:
+  - name: morocco_streamlit
+    type: dashboard
+    owner: {name: Morocco Observatory}
+    depends_on: ["ref('fact_climate_monthly')", "ref('mart_monthly_anomalies')", "ref('mart_water_year')", "ref('mart_site_trends')", "ref('mart_spatial_rainfall')"]
+  - name: morocco_powerbi
+    type: dashboard
+    owner: {name: Morocco Observatory}
+    depends_on: ["ref('fact_climate_monthly')", "ref('dim_location')", "ref('fact_infrastructure')"]

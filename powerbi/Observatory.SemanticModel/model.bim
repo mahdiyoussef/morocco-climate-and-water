@@ -1,0 +1,736 @@
+{
+  "name": "MoroccoClimate",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "tables": [
+      {
+        "name": "ClimateMonthly",
+        "columns": [
+          {
+            "name": "site",
+            "dataType": "string",
+            "sourceColumn": "site",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year_month",
+            "dataType": "string",
+            "sourceColumn": "year_month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rainfall_mm",
+            "dataType": "double",
+            "sourceColumn": "rainfall_mm",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "temperature_c",
+            "dataType": "double",
+            "sourceColumn": "temperature_c",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "soil_moisture",
+            "dataType": "double",
+            "sourceColumn": "soil_moisture",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "hours",
+            "dataType": "int64",
+            "sourceColumn": "hours",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "chirps_lat",
+            "dataType": "double",
+            "sourceColumn": "chirps_lat",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "chirps_lon",
+            "dataType": "double",
+            "sourceColumn": "chirps_lon",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "era5_lat",
+            "dataType": "double",
+            "sourceColumn": "era5_lat",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "era5_lon",
+            "dataType": "double",
+            "sourceColumn": "era5_lon",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "ClimateMonthly",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"fact_climate_monthly\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"site\", type text}, {\"year\", Int64.Type}, {\"month\", Int64.Type}, {\"year_month\", type text}, {\"rainfall_mm\", type number}, {\"temperature_c\", type number}, {\"soil_moisture\", type number}, {\"hours\", Int64.Type}, {\"chirps_lat\", type number}, {\"chirps_lon\", type number}, {\"era5_lat\", type number}, {\"era5_lon\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Rainfall mm",
+            "expression": "AVERAGEX(SUMMARIZE(ClimateMonthly, ClimateMonthly[site], ClimateMonthly[year]), CALCULATE(SUM(ClimateMonthly[rainfall_mm])))",
+            "formatString": "#,0.0"
+          },
+          {
+            "name": "Mean Temperature C",
+            "expression": "AVERAGEX(VALUES(Locations[id]), CALCULATE(DIVIDE(SUMX(ClimateMonthly, ClimateMonthly[temperature_c] * ClimateMonthly[hours]), SUM(ClimateMonthly[hours]))))",
+            "formatString": "0.0 °C"
+          },
+          {
+            "name": "Surface Soil Moisture Percent",
+            "expression": "100 * AVERAGEX(VALUES(Locations[id]), CALCULATE(DIVIDE(SUMX(ClimateMonthly, ClimateMonthly[soil_moisture] * ClimateMonthly[hours]), SUM(ClimateMonthly[hours]))))",
+            "formatString": "0.0"
+          },
+          {
+            "name": "Rainfall Reference 2015 mm",
+            "expression": "VAR SelectedMonths = VALUES('Calendar'[month]) RETURN CALCULATE([Rainfall mm], REMOVEFILTERS('Calendar'), 'Calendar'[year] = 2015, TREATAS(SelectedMonths, 'Calendar'[month]))",
+            "formatString": "#,0.0"
+          },
+          {
+            "name": "Rainfall Change Percent",
+            "expression": "DIVIDE([Rainfall mm] - [Rainfall Reference 2015 mm], [Rainfall Reference 2015 mm])",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Downloaded Climate GB",
+            "expression": "SUM(SourceAudit[bytes]) / 1000000000",
+            "formatString": "0.00"
+          },
+          {
+            "name": "Climate Observation Months",
+            "expression": "COUNTROWS(ClimateMonthly)",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Mapped Water Objects",
+            "expression": "SUM(Infrastructure[water])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Mapped Healthcare Objects",
+            "expression": "SUM(Infrastructure[healthcare])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Mapped Education Objects",
+            "expression": "SUM(Infrastructure[education])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Mapped Road km",
+            "expression": "SUM(Infrastructure[road_km])",
+            "formatString": "#,0.0"
+          },
+          {
+            "name": "Rainfall Baseline Departure Percent",
+            "expression": "DIVIDE(SUM(SeasonalDepartures[rainfall_mm]) - SUM(SeasonalDepartures[baseline_rainfall_mm]), SUM(SeasonalDepartures[baseline_rainfall_mm]))",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Complete Water Year Rainfall mm",
+            "expression": "AVERAGEX(FILTER(WaterYears, WaterYears[is_complete] = TRUE()), WaterYears[rainfall_mm])",
+            "formatString": "#,0.0"
+          },
+          {
+            "name": "Rainfall Trend mm Per Year",
+            "expression": "AVERAGE(LocationTrends[rainfall_slope_mm_per_year])",
+            "formatString": "0.0"
+          },
+          {
+            "name": "Temperature Trend C Per Decade",
+            "expression": "AVERAGE(LocationTrends[temperature_slope_c_per_decade])",
+            "formatString": "0.00"
+          },
+          {
+            "name": "Footprint Monthly Rainfall mm",
+            "expression": "AVERAGE(FootprintRainfall[area_weighted_rainfall_mm])",
+            "formatString": "#,0.0"
+          }
+        ]
+      },
+      {
+        "name": "Locations",
+        "columns": [
+          {
+            "name": "id",
+            "dataType": "string",
+            "sourceColumn": "id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "name",
+            "dataType": "string",
+            "sourceColumn": "name",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "zone",
+            "dataType": "string",
+            "sourceColumn": "zone",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "lat",
+            "dataType": "double",
+            "sourceColumn": "lat",
+            "summarizeBy": "none",
+            "dataCategory": "Latitude"
+          },
+          {
+            "name": "lon",
+            "dataType": "double",
+            "sourceColumn": "lon",
+            "summarizeBy": "none",
+            "dataCategory": "Longitude"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Locations",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"dim_location\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"id\", type text}, {\"name\", type text}, {\"zone\", type text}, {\"lat\", type number}, {\"lon\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Calendar",
+        "columns": [
+          {
+            "name": "year_month",
+            "dataType": "string",
+            "sourceColumn": "year_month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month_name",
+            "dataType": "string",
+            "sourceColumn": "month_name",
+            "summarizeBy": "none",
+            "sortByColumn": "month"
+          },
+          {
+            "name": "month_start",
+            "dataType": "dateTime",
+            "sourceColumn": "month_start",
+            "summarizeBy": "none",
+            "formatString": "yyyy-MM-dd"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Calendar",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"dim_month\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"year_month\", type text}, {\"year\", Int64.Type}, {\"month\", Int64.Type}, {\"month_name\", type text}, {\"month_start\", type date}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Infrastructure",
+        "columns": [
+          {
+            "name": "site",
+            "dataType": "string",
+            "sourceColumn": "site",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "healthcare",
+            "dataType": "int64",
+            "sourceColumn": "healthcare",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "education",
+            "dataType": "int64",
+            "sourceColumn": "education",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "water",
+            "dataType": "int64",
+            "sourceColumn": "water",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "road_km",
+            "dataType": "double",
+            "sourceColumn": "road_km",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Infrastructure",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"fact_infrastructure\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"site\", type text}, {\"healthcare\", Int64.Type}, {\"education\", Int64.Type}, {\"water\", Int64.Type}, {\"road_km\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "SourceAudit",
+        "columns": [
+          {
+            "name": "dataset",
+            "dataType": "string",
+            "sourceColumn": "dataset",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "path",
+            "dataType": "string",
+            "sourceColumn": "path",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "bytes",
+            "dataType": "int64",
+            "sourceColumn": "bytes",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sha256",
+            "dataType": "string",
+            "sourceColumn": "sha256",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "SourceAudit",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"source_audit\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"dataset\", type text}, {\"year\", Int64.Type}, {\"path\", type text}, {\"bytes\", Int64.Type}, {\"sha256\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "SeasonalDepartures",
+        "columns": [
+          {
+            "name": "site",
+            "dataType": "string",
+            "sourceColumn": "site",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year_month",
+            "dataType": "string",
+            "sourceColumn": "year_month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rainfall_mm",
+            "dataType": "double",
+            "sourceColumn": "rainfall_mm",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "baseline_rainfall_mm",
+            "dataType": "double",
+            "sourceColumn": "baseline_rainfall_mm",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rainfall_anomaly_pct",
+            "dataType": "double",
+            "sourceColumn": "rainfall_anomaly_pct",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "temperature_anomaly_c",
+            "dataType": "double",
+            "sourceColumn": "temperature_anomaly_c",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "soil_moisture_anomaly_pp",
+            "dataType": "double",
+            "sourceColumn": "soil_moisture_anomaly_pp",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "baseline_start_year",
+            "dataType": "int64",
+            "sourceColumn": "baseline_start_year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "baseline_end_year",
+            "dataType": "int64",
+            "sourceColumn": "baseline_end_year",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "SeasonalDepartures",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"mart_monthly_anomalies\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"site\", type text}, {\"year\", Int64.Type}, {\"month\", Int64.Type}, {\"year_month\", type text}, {\"rainfall_mm\", type number}, {\"baseline_rainfall_mm\", type number}, {\"rainfall_anomaly_pct\", type number}, {\"temperature_anomaly_c\", type number}, {\"soil_moisture_anomaly_pp\", type number}, {\"baseline_start_year\", Int64.Type}, {\"baseline_end_year\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "WaterYears",
+        "columns": [
+          {
+            "name": "site",
+            "dataType": "string",
+            "sourceColumn": "site",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "water_year",
+            "dataType": "int64",
+            "sourceColumn": "water_year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "months_covered",
+            "dataType": "int64",
+            "sourceColumn": "months_covered",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "is_complete",
+            "dataType": "boolean",
+            "sourceColumn": "is_complete",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rainfall_mm",
+            "dataType": "double",
+            "sourceColumn": "rainfall_mm",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "temperature_c",
+            "dataType": "double",
+            "sourceColumn": "temperature_c",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "soil_moisture_pct",
+            "dataType": "double",
+            "sourceColumn": "soil_moisture_pct",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "WaterYears",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"mart_water_year\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"site\", type text}, {\"water_year\", Int64.Type}, {\"months_covered\", Int64.Type}, {\"is_complete\", type logical}, {\"rainfall_mm\", type number}, {\"temperature_c\", type number}, {\"soil_moisture_pct\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocationTrends",
+        "columns": [
+          {
+            "name": "site",
+            "dataType": "string",
+            "sourceColumn": "site",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "observation_years",
+            "dataType": "int64",
+            "sourceColumn": "observation_years",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "first_year",
+            "dataType": "int64",
+            "sourceColumn": "first_year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "last_year",
+            "dataType": "int64",
+            "sourceColumn": "last_year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "rainfall_slope_mm_per_year",
+            "dataType": "double",
+            "sourceColumn": "rainfall_slope_mm_per_year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "temperature_slope_c_per_decade",
+            "dataType": "double",
+            "sourceColumn": "temperature_slope_c_per_decade",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "LocationTrends",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"mart_site_trends\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"site\", type text}, {\"observation_years\", Int64.Type}, {\"first_year\", Int64.Type}, {\"last_year\", Int64.Type}, {\"rainfall_slope_mm_per_year\", type number}, {\"temperature_slope_c_per_decade\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FootprintRainfall",
+        "columns": [
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "year_month",
+            "dataType": "string",
+            "sourceColumn": "year_month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "area_weighted_rainfall_mm",
+            "dataType": "double",
+            "sourceColumn": "area_weighted_rainfall_mm",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "valid_grid_cells",
+            "dataType": "int64",
+            "sourceColumn": "valid_grid_cells",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "approximate_coverage_km2",
+            "dataType": "double",
+            "sourceColumn": "approximate_coverage_km2",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FootprintRainfall",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = PostgreSQL.Database(PostgresServer, PostgresDatabase, [CreateNavigationProperties=false]),",
+                "    Gold = Source{[Schema=\"gold\", Item=\"mart_spatial_rainfall\"]}[Data],",
+                "    Typed = Table.TransformColumnTypes(Gold, {{\"year\", Int64.Type}, {\"month\", Int64.Type}, {\"year_month\", type text}, {\"area_weighted_rainfall_mm\", type number}, {\"valid_grid_cells\", Int64.Type}, {\"approximate_coverage_km2\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "ClimateLocation",
+        "fromTable": "ClimateMonthly",
+        "fromColumn": "site",
+        "toTable": "Locations",
+        "toColumn": "id"
+      },
+      {
+        "name": "ClimateCalendar",
+        "fromTable": "ClimateMonthly",
+        "fromColumn": "year_month",
+        "toTable": "Calendar",
+        "toColumn": "year_month"
+      },
+      {
+        "name": "InfrastructureLocation",
+        "fromTable": "Infrastructure",
+        "fromColumn": "site",
+        "toTable": "Locations",
+        "toColumn": "id"
+      },
+      {
+        "name": "DeparturesLocation",
+        "fromTable": "SeasonalDepartures",
+        "fromColumn": "site",
+        "toTable": "Locations",
+        "toColumn": "id"
+      },
+      {
+        "name": "DeparturesCalendar",
+        "fromTable": "SeasonalDepartures",
+        "fromColumn": "year_month",
+        "toTable": "Calendar",
+        "toColumn": "year_month"
+      },
+      {
+        "name": "WaterYearLocation",
+        "fromTable": "WaterYears",
+        "fromColumn": "site",
+        "toTable": "Locations",
+        "toColumn": "id"
+      },
+      {
+        "name": "TrendLocation",
+        "fromTable": "LocationTrends",
+        "fromColumn": "site",
+        "toTable": "Locations",
+        "toColumn": "id"
+      },
+      {
+        "name": "FootprintCalendar",
+        "fromTable": "FootprintRainfall",
+        "fromColumn": "year_month",
+        "toTable": "Calendar",
+        "toColumn": "year_month"
+      }
+    ],
+    "expressions": [
+      {
+        "name": "PostgresServer",
+        "kind": "m",
+        "expression": "\"localhost:5432\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      },
+      {
+        "name": "PostgresDatabase",
+        "kind": "m",
+        "expression": "\"observatory\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      }
+    ]
+  }
+}

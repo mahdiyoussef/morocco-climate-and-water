@@ -1,0 +1,34 @@
+{
+  "publication_id": "44c63fc5134047d39e63f48dc115b37b",
+  "dbt_invocation_id": "21163e16-f285-4c84-bff4-4e5d77fbf67c",
+  "source_manifests": [
+    "s3://landing/observatory/metadata/climate_downloads.json",
+    "s3://landing/observatory/metadata/era5_downloads.json",
+    "s3://landing/observatory/metadata/osm_downloads.json"
+  ],
+  "osm_files": [
+    {
+      "path": "data/raw/osm/morocco.osm.pbf",
+      "url": "https://download.geofabrik.de/africa/morocco-latest.osm.pbf",
+      "bytes": 244273101,
+      "sha256": "44930f5cc4ade0d65b79a72f82cf9dbe70e7eaa08648caf7c23194a2142f17b0"
+    },
+    {
+      "path": "data/raw/osm/morocco.poly",
+      "url": "https://download.geofabrik.de/africa/morocco.poly",
+      "bytes": 2383,
+      "sha256": "ebdb411139e60929150dfcfff1e12674fb0f6675bb5e6c615e77cd6c5ed6d53e"
+    }
+  ],
+  "tables": {
+    "dim_location": 12,
+    "dim_month": 120,
+    "fact_climate_monthly": 1440,
+    "fact_infrastructure": 12,
+    "source_audit": 20,
+    "mart_monthly_anomalies": 1440,
+    "mart_water_year": 132,
+    "mart_site_trends": 12,
+    "mart_spatial_rainfall": 120
+  }
+}

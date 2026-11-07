@@ -1,0 +1,104 @@
+{
+  "verified_at": "2026-11-02T18:37:13.732751+00:00",
+  "scope": "Real source-driven local medallion verification and dbt; dashboard application tests; static platform wiring",
+  "dbt": {
+    "target": "local (DuckDB)",
+    "invocation_id": "bd51e12a-182d-4d4e-9590-fad8b9a2a80f",
+    "statuses": {
+      "success": 11,
+      "pass": 32,
+      "no-op": 2
+    }
+  },
+  "silver": {
+    "engine": "duckdb-local-verification",
+    "tables": [
+      {
+        "table": "chirps_grid",
+        "bronze_rows": 3251040,
+        "silver_rows": 3251040,
+        "rejected": 0,
+        "deduplicated": 0
+      },
+      {
+        "table": "chirps_sites",
+        "bronze_rows": 1440,
+        "silver_rows": 1440,
+        "rejected": 0,
+        "deduplicated": 0
+      },
+      {
+        "table": "era5_hourly",
+        "bronze_rows": 1052064,
+        "silver_rows": 1052064,
+        "rejected": 0,
+        "deduplicated": 0
+      },
+      {
+        "table": "locations",
+        "bronze_rows": 12,
+        "silver_rows": 12,
+        "rejected": 0,
+        "deduplicated": 0
+      },
+      {
+        "table": "osm_services",
+        "bronze_rows": 8652,
+        "silver_rows": 8652,
+        "rejected": 0,
+        "deduplicated": 0
+      },
+      {
+        "table": "osm_roads",
+        "bronze_rows": 12,
+        "silver_rows": 12,
+        "rejected": 0,
+        "deduplicated": 0
+      },
+      {
+        "table": "source_audit",
+        "bronze_rows": 20,
+        "silver_rows": 20,
+        "rejected": 0,
+        "deduplicated": 0
+      }
+    ]
+  },
+  "pytest": {
+    "tests": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "streamlit_http_health": {
+    "status": 200,
+    "body": "ok"
+  },
+  "powerbi": {
+    "pbir_json_documents_validated": 41,
+    "pbip_validated": true,
+    "gold_table_source_contracts_validated": 9,
+    "relationship_and_visual_bindings_validated": true,
+    "power_bi_desktop_rendering_verified": false,
+    "limitation": "Power BI Desktop is required to execute DAX, refresh the model and verify visual rendering."
+  },
+  "gold": {
+    "dim_location": 12,
+    "dim_month": 120,
+    "fact_climate_monthly": 1440,
+    "fact_infrastructure": 12,
+    "source_audit": 20,
+    "mart_monthly_anomalies": 1440,
+    "mart_water_year": 132,
+    "mart_site_trends": 12,
+    "mart_spatial_rainfall": 120
+  },
+  "distributed_stack_executed": false,
+  "docker_compose_cli_validated_locally": false,
+  "limitations": [
+    "Docker engine is not installed in this workspace.",
+    "MinIO, Spark/Hive, Airflow, PostgreSQL and monitoring integration require the documented Docker smoke run.",
+    "Compose dependencies, mounts, ports and backend wiring were checked with YAML-based tests; the standalone CLI download did not complete.",
+    "No browser visual-rendering or Power BI Desktop execution check was performed."
+  ]
+}

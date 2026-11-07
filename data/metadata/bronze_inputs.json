@@ -1,0 +1,1244 @@
+{
+  "tables": {
+    "chirps_grid": [
+      {
+        "path": "bronze/chirps_grid/year=2015/month=01/part.parquet",
+        "bytes": 154588,
+        "sha256": "731b41a4129678ac8e4e1a8aaaa11228385be36213cdaf4fd22a774d10f7ec87"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=02/part.parquet",
+        "bytes": 142630,
+        "sha256": "987db53de54a091c1f51d967aa04769f2f1b9f161c14f73f868b4b57d9364fcc"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=03/part.parquet",
+        "bytes": 152154,
+        "sha256": "c16fcbf2ac85f2bc89f6c8f45e6e24528224825edf3e18dbcab1995c42d2c324"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=04/part.parquet",
+        "bytes": 153981,
+        "sha256": "f350b995a441101880ee167193083a091d466efd4dca32df8e57e548cd230548"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=05/part.parquet",
+        "bytes": 98331,
+        "sha256": "5cdb5197121f721b8bf0e58849c59356360f81ac3b8bdca39270385a7d21b439"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=06/part.parquet",
+        "bytes": 67514,
+        "sha256": "a10a541279682083ae5f0ca402cb8bad38358853c14d9d25da0972bb26b262db"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=07/part.parquet",
+        "bytes": 145748,
+        "sha256": "0a68a7fc1d4845b56ac4bd1b9bbf0a362552bd94aec0c192bb81c7450d4ec433"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=08/part.parquet",
+        "bytes": 155201,
+        "sha256": "18bf3a32373d09d3f49cecd744fb948100fea41ae77422fd2ba2ef466aa7068c"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=09/part.parquet",
+        "bytes": 152933,
+        "sha256": "88e8daf68a16612df6d54e898f6879e4112e67b7e1c9cc18ab25f5f894b6459e"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=10/part.parquet",
+        "bytes": 155962,
+        "sha256": "f9609e2b1ed9d16c348d325fcd7e29250dede3cf7887b12d5eff0fc5288f9d36"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=11/part.parquet",
+        "bytes": 154164,
+        "sha256": "c70564c2fd4421895bbe3fa779eab998bd2d023fcbfda2e5ef60b9c14a76e19e"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2015/month=12/part.parquet",
+        "bytes": 154561,
+        "sha256": "f57aad9f1088d4ba7c51cdf329128448411b80426456021eb73ae0d5e218e11a"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=01/part.parquet",
+        "bytes": 115912,
+        "sha256": "b4fb861d7989346497a3e22d7cd7f21d7435f6aec85116f301ae3190e80513bc"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=02/part.parquet",
+        "bytes": 152367,
+        "sha256": "0e901524f34eaeead77b4e9f9c198c5b33157c0fc1d5c49ff64e0d2d7542c044"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=03/part.parquet",
+        "bytes": 149713,
+        "sha256": "4af7a014ba9fc52b14fe1017da8a4ee10926dda066caa57ae1c80c8ed195b9c1"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=04/part.parquet",
+        "bytes": 148986,
+        "sha256": "32d01339423352b1f171bcaedde7d85c8c714eeca042ee8eb0d1df21d272978a"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=05/part.parquet",
+        "bytes": 119977,
+        "sha256": "b189203768becdbe3344c94c60161e2990ab22030560055269c58701c39072e9"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=06/part.parquet",
+        "bytes": 51316,
+        "sha256": "81b1f5a8f2e260d6a2e7034768ad65c30ba8eed9f09be6e851b9b6d71e74f997"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=07/part.parquet",
+        "bytes": 115181,
+        "sha256": "6343a118d5136bac2909785d517de7a584691ae053a026bcab4eb1c0d072050b"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=08/part.parquet",
+        "bytes": 143645,
+        "sha256": "1f5084353633972615aae0b16dac744e4506b17693e1971acbe22537d7dc33c7"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=09/part.parquet",
+        "bytes": 153199,
+        "sha256": "2e75d11b71d2fde9862140f65e531aa1f8b8d4d25e1017ccbd0e1c66d3351da5"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=10/part.parquet",
+        "bytes": 154403,
+        "sha256": "44ee2ba41b11b4ceb313bb8a295981e766c2876882f61dd873ff65e4f9d85e87"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=11/part.parquet",
+        "bytes": 157864,
+        "sha256": "21cc7adcde5ac4eaef4baf3bf75708d28da70239167d93feb83249853f699929"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2016/month=12/part.parquet",
+        "bytes": 156484,
+        "sha256": "c9ada72b0f0f336f1c8eeca4cb71eb8db6d57c64d245db4622d82fc1170e4d19"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=01/part.parquet",
+        "bytes": 120139,
+        "sha256": "524e3c81720a1e7c7fa4e654b5e0b38b16bc64de432feef4e157a9172d825f5a"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=02/part.parquet",
+        "bytes": 89331,
+        "sha256": "40856c50698b3e822bc6eb007949230cf77b6c9e62b891530f9fee8d5a82f0dc"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=03/part.parquet",
+        "bytes": 128903,
+        "sha256": "f0c4e955490d5875faa7ae5a0fa140afb5ec81112be25598dddde9dfac1fdfc5"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=04/part.parquet",
+        "bytes": 119712,
+        "sha256": "32b77be2255694517df098dd4a8cbc388842e5c84fbd469d5aaf91a6c3118a89"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=05/part.parquet",
+        "bytes": 141261,
+        "sha256": "6058790f7a8e264cb4442622153154e5e00e55fb18f256aece8d66ba676e68a7"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=06/part.parquet",
+        "bytes": 111953,
+        "sha256": "cbf1edd30deff069e0228371b65ccc93b9dadb327fe20d66355a59758c0f0d7d"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=07/part.parquet",
+        "bytes": 57706,
+        "sha256": "58b4988b1fa6ea369eb5c64073575099328d35d59129349573e5e9469ef0b543"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=08/part.parquet",
+        "bytes": 124901,
+        "sha256": "af0844918e726d6fb76985b9ecfdadb7e8b817b38c53b61ee5b741b7871d6eec"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=09/part.parquet",
+        "bytes": 141219,
+        "sha256": "c650d307c59720cf5cb87253f76ef18e7589ef5fc169a5562cd5476349deb710"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=10/part.parquet",
+        "bytes": 87384,
+        "sha256": "294ac1e71800eec9993d0913afbf60c8351af82af608a2583517d57eec358d08"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=11/part.parquet",
+        "bytes": 157335,
+        "sha256": "80ecf47c9ff0a0029893f9ffab2c1dcca2025e91fbd99cda6b31fb8338cdd09d"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2017/month=12/part.parquet",
+        "bytes": 138892,
+        "sha256": "8e83fc144d25e94ca91888489d385ec3c03ea73408f92f932ccba42c77490f0d"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=01/part.parquet",
+        "bytes": 123538,
+        "sha256": "2f97263142ebddb9306af183806b5372af4adbe09139deddb107ff88c4243b02"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=02/part.parquet",
+        "bytes": 155746,
+        "sha256": "4413eb753872ca8098adb98e2cd434e55988506b47e83a84cfa990b919d5ae39"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=03/part.parquet",
+        "bytes": 157123,
+        "sha256": "a17fc3821460336c54b754b0155f21dfefc4102ad2c29ce369c032d7ec68a106"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=04/part.parquet",
+        "bytes": 99004,
+        "sha256": "73731c1c65f4f14c2aa979837102cae1ba3512597607bd22f3f30b390f939fc1"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=05/part.parquet",
+        "bytes": 108818,
+        "sha256": "df196212d1872cb5f0345ecf521c94c84982fa5f162dacb196177339a56bbd81"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=06/part.parquet",
+        "bytes": 54186,
+        "sha256": "a3c909168169bbe5d5ef5cb5d27ded544265789041b25c4cf498f29fddd68ca6"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=07/part.parquet",
+        "bytes": 40766,
+        "sha256": "922262d736ce5328be8c64b3fbe9c89697710c934a081b09dfa523141a8adc81"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=08/part.parquet",
+        "bytes": 135488,
+        "sha256": "b1efd1fd8caea8dd0777667472ae6bb92e457e7edc43d701632229351e072167"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=09/part.parquet",
+        "bytes": 155111,
+        "sha256": "5b68724214c005f9b6f012d1a5932e27f6c0f57295e17508673eb53432b77902"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=10/part.parquet",
+        "bytes": 152717,
+        "sha256": "0d4ccd76460226088b54a305b84d5ae6a0c6ff03b16454f399bf089a3bd8f891"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=11/part.parquet",
+        "bytes": 120209,
+        "sha256": "913b6f9f56250ca2a3d3f9e56a2da7e8bdce13a255bd6cc132b10339a7bc1329"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2018/month=12/part.parquet",
+        "bytes": 154290,
+        "sha256": "ca1ca0342735c5bcb93f6b6f215d67107ece504d342b0444f55ba9c4f38409e9"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=01/part.parquet",
+        "bytes": 138258,
+        "sha256": "a7dcfb44fc81b345851b6ef6693ec58e00184a2c09dc2254b897d6b50a0950da"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=02/part.parquet",
+        "bytes": 116155,
+        "sha256": "95bb8917f9c5b346444df2c6aa6f956f966655929cf326cf5a96b6f6fc9cb197"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=03/part.parquet",
+        "bytes": 123323,
+        "sha256": "0f10b9bd16deadcf0e0c77977e8ade50f12751024fa1b69a947a065dd8e9f5a6"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=04/part.parquet",
+        "bytes": 96266,
+        "sha256": "cb9d7a49b9107a7431bdb5e0085c0e768e825e2e5ea0bd60dea6e3d63e13fcd2"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=05/part.parquet",
+        "bytes": 91833,
+        "sha256": "47a499bb6857207b4e9084454f60b8380406d733c8749fdf8abd4b959ebf1e50"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=06/part.parquet",
+        "bytes": 40052,
+        "sha256": "bc543a5ee25ee4c746e11708327497c7e1c6daff8fa048e306d7e853002943bc"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=07/part.parquet",
+        "bytes": 86329,
+        "sha256": "711dd4fbc4a496e4485c177bcf4db55f1a56262464af0f51e50d5abcc49d7fd4"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=08/part.parquet",
+        "bytes": 136762,
+        "sha256": "15e1192c9ffc434e86b65e809feb6005d9c1f2cc0a1a4426d8f11d3263fbfe03"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=09/part.parquet",
+        "bytes": 106045,
+        "sha256": "994d6be0d992727a670dfc1ba4901ddb93e5cb2dcb11dc9c0672a09680186134"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=10/part.parquet",
+        "bytes": 130746,
+        "sha256": "ba62b06fa8cab5305db3c7988ea355267d5014a2e131757627e5e4943bc40223"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=11/part.parquet",
+        "bytes": 119675,
+        "sha256": "13c2f4c0c6ac44c7d4e9ffeb8bacee4d134cea56b9a815e3e75f8fa5f7e3d6d7"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2019/month=12/part.parquet",
+        "bytes": 120871,
+        "sha256": "bf3003262df3668e31dd88aacf252c440e35944ca09b41267256c12f0fa690b4"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=01/part.parquet",
+        "bytes": 142970,
+        "sha256": "d8bd3ab74d8c0675ea652ae4d8aee293007f4d0b6dfede65594c15cd7db9f684"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=02/part.parquet",
+        "bytes": 144378,
+        "sha256": "c8862d1bcb1fa015ce0542d867e135b2a97c8cd3da8d54b89ea80ef5093c045e"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=03/part.parquet",
+        "bytes": 139195,
+        "sha256": "13a14dfe40b8d14e5b6bf5396cb5028ade3aac8e7f7ce5abf52e830d97e5c852"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=04/part.parquet",
+        "bytes": 104325,
+        "sha256": "522c89b7a97c5f90afb822c90d6b6d447badb984417765975ba50ce32a803241"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=05/part.parquet",
+        "bytes": 83326,
+        "sha256": "101af24b7e17b30b7d10b6beb7ff5bc597447911d26834d5013893943c393882"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=06/part.parquet",
+        "bytes": 143013,
+        "sha256": "55e5679879a73f18963062bc5f0cfa3590cf97533e73247a6f6dc777de534df9"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=07/part.parquet",
+        "bytes": 73008,
+        "sha256": "32f4429810c5d21c4cbaf8521d52943172cc54e55ae547afbd3ffe07eee7cadb"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=08/part.parquet",
+        "bytes": 74848,
+        "sha256": "10a9d4e5fbacf82bc81a2013a2e0d3353d5867e054e515ce6c351d9f30460e1c"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=09/part.parquet",
+        "bytes": 120146,
+        "sha256": "4a8c35a3fcc675cdf1770f1025b720a0660d58476507026df93498ceb04d5cf0"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=10/part.parquet",
+        "bytes": 140506,
+        "sha256": "61eac956931d8bc87077a498b198acb2c4148b52375c223c726fa54cf4c1f12e"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=11/part.parquet",
+        "bytes": 151213,
+        "sha256": "cbb91fdb45229fc690226ee2bd304ee3a811bc80f7e89ae858f7f2ffc98ac41d"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2020/month=12/part.parquet",
+        "bytes": 119029,
+        "sha256": "a9098dd49e4245fea376a572742040d272c42c87bd045a95f1c04c7ad900720a"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=01/part.parquet",
+        "bytes": 146256,
+        "sha256": "50e728f3cef3d6aedd89122d933bfea08b06b178b9e7352a6d7e0737c221d335"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=02/part.parquet",
+        "bytes": 133284,
+        "sha256": "200d924a4c3903d37b9854d0ad86aa84d8979e234745c045c2ec67dc39708fef"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=03/part.parquet",
+        "bytes": 150715,
+        "sha256": "7b9dedf6e75bd74790c52ab772f57eb463f00bbdb8516dd25889d5c94813937d"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=04/part.parquet",
+        "bytes": 116877,
+        "sha256": "c75af998d0f39f86c1ddfa608c864857ee5fe9ae224fd083f65295786cee4049"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=05/part.parquet",
+        "bytes": 152500,
+        "sha256": "e9199ba7715027ec8d454303a6d11f76b2ff70aa3f3a6e29d58dc2a241a41fcd"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=06/part.parquet",
+        "bytes": 141580,
+        "sha256": "d2957eff402169f5f8e9fd6c0e6a81866534a1d6e5ae08b23c03698368175bb0"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=07/part.parquet",
+        "bytes": 69006,
+        "sha256": "b5dbe1c7d10b9ace96a73cbda7d640f5f83cf4e211883f0ec1157722da56d83c"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=08/part.parquet",
+        "bytes": 34553,
+        "sha256": "896c7ee05ee455106b289c3db53d9ddc777b5e1c1f1a0b82e476a8f25cd77be4"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=09/part.parquet",
+        "bytes": 132162,
+        "sha256": "f263f7c7a35b3bd5ab89992afb78c24299ce3cd2c185d93e60fd8852e5898b39"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=10/part.parquet",
+        "bytes": 110212,
+        "sha256": "7bb84571ba45070e8b02efa92ceed5485fba7889c5408f9be908fa4a8c4c94a5"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=11/part.parquet",
+        "bytes": 149515,
+        "sha256": "b91128daf4eaa842069c2630b0b18d507c69971d1bf8fb574aea8f3a95bac658"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2021/month=12/part.parquet",
+        "bytes": 154535,
+        "sha256": "66154be58e37401b3cda36837d223d9092cce053a9c67efe36722da61c02b0bb"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=01/part.parquet",
+        "bytes": 156236,
+        "sha256": "b333b877da80ace74e878f8e7a5257ea94a53a6dac88c16f4542fdd927d18adf"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=02/part.parquet",
+        "bytes": 155038,
+        "sha256": "996fa8f292f5bbad6e5c20fa4df1fa4d938a9783389ba5436edf268df96a0261"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=03/part.parquet",
+        "bytes": 95963,
+        "sha256": "be655b1206bcca6e90f46a1ab29de1f777edd68866496e06e9a15aa011b094a4"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=04/part.parquet",
+        "bytes": 100341,
+        "sha256": "7dd6b2f8b1233ca26340fcceb560a11d2ef0f7b15c5f411c32cfd56e81913d58"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=05/part.parquet",
+        "bytes": 153620,
+        "sha256": "a83496aec0442729fb60835e37374a49e902e573a8a82df55a62431cd5317d65"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=06/part.parquet",
+        "bytes": 157883,
+        "sha256": "089097887c3eaf9b29d119c06195c503b38eb29700806e9a59a7a917f3f2136c"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=07/part.parquet",
+        "bytes": 69537,
+        "sha256": "efcfd0004fe8eea9f28bfea0604d040ce85110945042c55fba39b6f090c25ac1"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=08/part.parquet",
+        "bytes": 85956,
+        "sha256": "b7bb6666020f0b933cc13e1ee5a20333967bb0a9795ab7c3e2861fba68ca07da"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=09/part.parquet",
+        "bytes": 148774,
+        "sha256": "8bf9519afc0fcea26098ee9513f18ed877b9b5a1af40b4c9c80ee1eb1db98f98"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=10/part.parquet",
+        "bytes": 135461,
+        "sha256": "8b2786757633a0eb9c0ed6bfbce7c275726df3576b8b80b19dcb9ececaac53e4"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=11/part.parquet",
+        "bytes": 109656,
+        "sha256": "150a97be344ac645cbe54d0f0f0c68cff8759ff8c1081771e0f096f8f63a47d8"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2022/month=12/part.parquet",
+        "bytes": 142399,
+        "sha256": "527eb41637b6bb7a7b33b2802155458cf4fb7c7d369300a164cc5064cef5746a"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=01/part.parquet",
+        "bytes": 106824,
+        "sha256": "04915f2047589ea1faedb8059cdb5b0f958a097ffa860e3be161d2675976d274"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=02/part.parquet",
+        "bytes": 156661,
+        "sha256": "2793847c4b5d31a0e7693361a5683b05032c35c141000e5cbef0b72267de2a38"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=03/part.parquet",
+        "bytes": 127982,
+        "sha256": "b2616c0d49d3b90c41d818a20e438b4d12763ac9a0c6fec722688f1671030272"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=04/part.parquet",
+        "bytes": 115095,
+        "sha256": "90e9e4234c1c5c8ebf8d12d80e6cda36b24d40218d126157547e9aefd46af96b"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=05/part.parquet",
+        "bytes": 132074,
+        "sha256": "7cabadf9bb9be6283f45f7e3cb50f86e911e06055ed110f6c5d0d7f884856422"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=06/part.parquet",
+        "bytes": 55702,
+        "sha256": "054e088e3eaa9354c66396b71b723e40e3145ec69897a91230fc08783155862c"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=07/part.parquet",
+        "bytes": 51955,
+        "sha256": "dbfcace8956228acf9498bcc9bcc8a90cfd4c722d8d6628fec306c455ecbfa46"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=08/part.parquet",
+        "bytes": 114464,
+        "sha256": "b1301acde304e4a80981d6fb3d4d61bc2d4cf91453d694bb8a15f13cac432e6b"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=09/part.parquet",
+        "bytes": 144868,
+        "sha256": "bc4b9e19cfdfd16595bfccc8bec612125b4ed3fd3996580ce19c57c6a4234180"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=10/part.parquet",
+        "bytes": 107896,
+        "sha256": "be4da1d1e153bd5933475a6efe6a506f1a5ad2aec95ef45a42c1a203f910a386"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=11/part.parquet",
+        "bytes": 142021,
+        "sha256": "344bee04c86ed5428967deef8409395e67fdaf6120e16d85087693d2fa8df75c"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2023/month=12/part.parquet",
+        "bytes": 156215,
+        "sha256": "585d0db707b647e368b3a4d8ecd51f9d71e24c1ed5f7702930773ba196081f9a"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=01/part.parquet",
+        "bytes": 156287,
+        "sha256": "d56c8df6cfeb5d477ff2cf5958abb1c85338dace394a0fe5e5e0991547f503c7"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=02/part.parquet",
+        "bytes": 117379,
+        "sha256": "87c9ec198d43ef7f849e1897e0545c7911ac228bdc524b32835672d1192fb1cb"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=03/part.parquet",
+        "bytes": 103338,
+        "sha256": "48601746c5d90b1914ea88de9cfe9d801c4c3f873e0aa9ce6d09754822221ae0"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=04/part.parquet",
+        "bytes": 131092,
+        "sha256": "a2327627026720f22989581fecd160805ee607da60f60dfc6f097a4dd849eed5"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=05/part.parquet",
+        "bytes": 151005,
+        "sha256": "510ee63489ab697508f8694e47b472d61c719e2c2c0b977bb0f8bebb1cc37328"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=06/part.parquet",
+        "bytes": 63670,
+        "sha256": "03b189689058f604c62983e1c07d0200e5f143bea18619014e5390e691c1e436"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=07/part.parquet",
+        "bytes": 49992,
+        "sha256": "979fbbf6b2228fd248f583f27e56a58f98f9074b2426a1bcffe56b96ae0568dc"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=08/part.parquet",
+        "bytes": 98536,
+        "sha256": "fc0fb584da41c96f1b16bed23edc9e052106bd7785860b4d7790810b87774027"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=09/part.parquet",
+        "bytes": 142430,
+        "sha256": "acd889895d98753592582729438e0ce1f9928707bb06956408719ad3b7c1049c"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=10/part.parquet",
+        "bytes": 113552,
+        "sha256": "2e12bf42692de2f7307d675c7939b8bdf195da4da0934d1ef5d6f449a7aea997"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=11/part.parquet",
+        "bytes": 145960,
+        "sha256": "5947fcc66aff60642338b6e54138aed935ba62a7e2a6aab6237faf2b71156e74"
+      },
+      {
+        "path": "bronze/chirps_grid/year=2024/month=12/part.parquet",
+        "bytes": 146940,
+        "sha256": "04d1b5dc1b2c650bce5d60d45a37cb249bf22bbc0ebeb47a9ce81695260b7020"
+      }
+    ],
+    "chirps_sites": [
+      {
+        "path": "bronze/chirps_sites/part.parquet",
+        "bytes": 9189,
+        "sha256": "425f74209b79e53065b117088a3d6d3ae29cfd5758ce21e28876587848cf2748"
+      }
+    ],
+    "era5_hourly": [
+      {
+        "path": "bronze/era5_hourly/year=2015/site=agadir/part.parquet",
+        "bytes": 38972,
+        "sha256": "3c36b39a4c262e54467026b728dcbd3f97b0d491aa7837854a63d0e5a1778222"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=beni-mellal/part.parquet",
+        "bytes": 38876,
+        "sha256": "1524cc2f56b5e4ef74e02f55c13046d1f60315b9299f73bde4486daf580f86f8"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=casablanca/part.parquet",
+        "bytes": 37518,
+        "sha256": "4af8973724de6c0af1791798ab71ca4852109bd70e8a07514f1eea9847f24b59"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=errachidia/part.parquet",
+        "bytes": 35350,
+        "sha256": "a8df011f199b82ed031d67c731f4158c399234ab0c2ccd80837d5ad1ca7e59c5"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=fes/part.parquet",
+        "bytes": 38848,
+        "sha256": "c64fc7b1c5a4abc0f774c5d993a0d860198f8a43fa5accedef6860492bd64405"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=marrakech/part.parquet",
+        "bytes": 38254,
+        "sha256": "003b2a412324b99a6f4be93115be00b09383a74377cb04808f7a653edf70b842"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=meknes/part.parquet",
+        "bytes": 37369,
+        "sha256": "b679a1a83bd3af070f9dfb9fbf0648df95d6162949deecab081305dc226237fc"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=ouarzazate/part.parquet",
+        "bytes": 35301,
+        "sha256": "910d8a8aa607ac052cc31a38507604e0af230616d9dca582d7dc4b2340ecfc1e"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=oujda/part.parquet",
+        "bytes": 39906,
+        "sha256": "0e4f134d3ae35d5f79c9e0de5ec50fa8b1868a6a11ec3674865d0ff36368f98d"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=rabat/part.parquet",
+        "bytes": 38410,
+        "sha256": "cef2d4946effa59ee6ec208e3fe506a17ca0b8ac256c552c6647e5a4a7180baa"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=tangier/part.parquet",
+        "bytes": 38670,
+        "sha256": "bb8f4650d4de563b554667994f795c9dbbcf695e43c31488d5db34c366433365"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2015/site=tetouan/part.parquet",
+        "bytes": 38892,
+        "sha256": "b6c12ff800f43309c6c4dad248269c13fb809c2a9c0a9a935fe117089f686c30"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=agadir/part.parquet",
+        "bytes": 37961,
+        "sha256": "8e8bb2f25a4df8dfc40c31a7df89f25ed6870471c2de0df5684e009ced833d60"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=beni-mellal/part.parquet",
+        "bytes": 38748,
+        "sha256": "9bfe8b6aa21a20c036e516977c00b284337d006784d1554b7d9fbda9f91d077f"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=casablanca/part.parquet",
+        "bytes": 37355,
+        "sha256": "7007fb9bac08dddbe642a4dea6b474f177d5bf543dc4aa99006fa93de506af8b"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=errachidia/part.parquet",
+        "bytes": 35862,
+        "sha256": "fc0ead98898c5211fec06dedea255455357eaa555bf4aed675d8aa939ddedd30"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=fes/part.parquet",
+        "bytes": 39166,
+        "sha256": "d50c648dfb76eb5db02661bdeedec68156007b08acee305488ee03ec9373e9f7"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=marrakech/part.parquet",
+        "bytes": 38045,
+        "sha256": "4dad401ef19cc63e9f832f564e6d5b386081b8db672e859cef67250073246872"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=meknes/part.parquet",
+        "bytes": 37659,
+        "sha256": "489738f5c84b53e600558a1d914132431e0fa95d7034bd4a58a9ca8f24098a9c"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=ouarzazate/part.parquet",
+        "bytes": 35095,
+        "sha256": "22a019f5825c81328acf01c8fce9631375947cbc4c1304638a199244fad259df"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=oujda/part.parquet",
+        "bytes": 39761,
+        "sha256": "18f3c5dee19f3e891b734b9a871bdfe388ac784156497e271cdaa075e7e3d3c1"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=rabat/part.parquet",
+        "bytes": 38196,
+        "sha256": "e2db462b79e3fec6a3dd90470ac7286bbb0778c9499208d4ac958cb0ac1d1fea"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=tangier/part.parquet",
+        "bytes": 38449,
+        "sha256": "55e75074797d46929c88d6681b8fbd93422eba2021fb3555da70ef19bacaec97"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2016/site=tetouan/part.parquet",
+        "bytes": 38670,
+        "sha256": "865171d2bd2d66fde95f55a7740a2d5ff14abcb8596c5e6ca286262edc69d710"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=agadir/part.parquet",
+        "bytes": 37760,
+        "sha256": "85f5b83765ebf1dc9922eb4f78733b558c372ced0143ed7c8fac6ec73296f74f"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=beni-mellal/part.parquet",
+        "bytes": 37747,
+        "sha256": "6ed2d0d5ed2a6145607ed08a4f224979d7e8c25434294b4a491ae6b3ff44209c"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=casablanca/part.parquet",
+        "bytes": 36553,
+        "sha256": "03df482a6a3850820dbdb40a8aba8ad99171f9055119716f1d6b91fe807358b6"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=errachidia/part.parquet",
+        "bytes": 34393,
+        "sha256": "aa60d8e439a4627e252e8e39a336bf6001f025cfe030a3760ada4746d046bf6a"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=fes/part.parquet",
+        "bytes": 38694,
+        "sha256": "f483b9d62e3051831c802940f852d015f2ff12027ca62ab0cf1e6ba57dde9632"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=marrakech/part.parquet",
+        "bytes": 36699,
+        "sha256": "9e3caba6ac32c629cbc79e32b2cba2917c2b270f1c97de7c40f7b4728fb0a646"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=meknes/part.parquet",
+        "bytes": 37020,
+        "sha256": "274477f0bf93eb4fe45148f7a053fe03c15c057589ca00bdd57321de3281fe08"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=ouarzazate/part.parquet",
+        "bytes": 34329,
+        "sha256": "6afeaf73f12fd7c9f409fddc230a8d35e549ee8c0520cf1ceb9090457b6031d3"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=oujda/part.parquet",
+        "bytes": 38990,
+        "sha256": "cb7871bf9f05e800741088016ceab205e4260ac2659566549f7b4d646b4128b4"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=rabat/part.parquet",
+        "bytes": 37477,
+        "sha256": "3ddde5d1690e85ca75262325ddb0c2f9df7cd3f5b591fd858e4d3702f6b61072"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=tangier/part.parquet",
+        "bytes": 38246,
+        "sha256": "870722f57ab255822433004904c30e039070d5cef74ddbdf60bf32f9c1f1612e"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2017/site=tetouan/part.parquet",
+        "bytes": 38510,
+        "sha256": "e88b8c259682401a9281742794d4d55d7b11e16f16c90e789a39467d46a6b2be"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=agadir/part.parquet",
+        "bytes": 38425,
+        "sha256": "96c8db743236d469a4e71c8ae274c240f9a0cdacd63973cb584f62685eec3242"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=beni-mellal/part.parquet",
+        "bytes": 39866,
+        "sha256": "975c947e025e4e845620eec0670ec2933520c832d7e6dea7a9b6c3f1c95a8b1e"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=casablanca/part.parquet",
+        "bytes": 38497,
+        "sha256": "be33b9e97220788ca5caa6ab70ae685aa6d2a2f5b908bd82fce7c2f8c7af8f6a"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=errachidia/part.parquet",
+        "bytes": 36547,
+        "sha256": "56740d0268ead1c105348913f6e19ac8cdc749f5e0e2729d2449ddf862851497"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=fes/part.parquet",
+        "bytes": 39912,
+        "sha256": "e350099fa9f10167688873e32856531df8e454e827526525fed56f31addec870"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=marrakech/part.parquet",
+        "bytes": 39223,
+        "sha256": "00e5939caba70f984556283d4ce2ba9bd1d065b2935f4990952c8106d4687f52"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=meknes/part.parquet",
+        "bytes": 39549,
+        "sha256": "af08fce2bd65d3f183d5524460085fd768bec28e926173b7ea983e495c4ed610"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=ouarzazate/part.parquet",
+        "bytes": 35814,
+        "sha256": "afc424e5775c979c15eb624eaf783b587833fcd330c76d95a86b69681d6ed496"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=oujda/part.parquet",
+        "bytes": 40374,
+        "sha256": "bf8b8c804745799621a6690389cf3210d9aadf495ff874deff91977a930d59d6"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=rabat/part.parquet",
+        "bytes": 39311,
+        "sha256": "2c9bce033c0b14d8894d24a5520502a0a20fc37ca7ebfc5180e8ff4b0cffdeb6"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=tangier/part.parquet",
+        "bytes": 38879,
+        "sha256": "7a285ff10c8ad93af3e6401fd9414a9f8bb2eb8bad7929c5d46db08e20398909"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2018/site=tetouan/part.parquet",
+        "bytes": 39069,
+        "sha256": "61eae63c588cc4d0490bab5d4993a299a690222e053b4af50785c2a34542e4a0"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=agadir/part.parquet",
+        "bytes": 34827,
+        "sha256": "b8affaea0122e3c8aac845c33e7775c5e6be3173406cef813990b4268458e61f"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=beni-mellal/part.parquet",
+        "bytes": 38093,
+        "sha256": "b5405efe0bb2a4df41eb658980122118b53f5d1974676826a73ef597ad11ad98"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=casablanca/part.parquet",
+        "bytes": 35607,
+        "sha256": "24913161dac0c38bf2e01e590aefdd36c341515d57fea8d1103c6e3f9bb01931"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=errachidia/part.parquet",
+        "bytes": 34379,
+        "sha256": "5c5ac3728223a66ddabf57e5f243035db4981dfe745211c822c74dee618ad529"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=fes/part.parquet",
+        "bytes": 38431,
+        "sha256": "f359c331eb5f158b87392aa27cceca8f5324d22cb9405129df1274beab9bcf70"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=marrakech/part.parquet",
+        "bytes": 37481,
+        "sha256": "7fe0094ac77e4939c6d1fa6b1e06eddf90793c6f74b158f9f5b342fc7edeac47"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=meknes/part.parquet",
+        "bytes": 36786,
+        "sha256": "4ebff264bc6acc90b96c981b481f198800ade57d722c8b615919d49895dacd8b"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=ouarzazate/part.parquet",
+        "bytes": 34750,
+        "sha256": "5e2e0091111775695a00ad70b0af1c9e3f0cfe3719e2fb1af9ce93bb0b55bb02"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=oujda/part.parquet",
+        "bytes": 38984,
+        "sha256": "ab24100a2e03f26cd4b7349135a50db22bd0ba6cb58c4abd7e0dc3e61946dbdc"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=rabat/part.parquet",
+        "bytes": 38038,
+        "sha256": "ca0a6cd2767931db8263d3ac9ffb4cf4278d86328daa7080392a5eab3f9dd044"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=tangier/part.parquet",
+        "bytes": 37838,
+        "sha256": "cd2222228d9c8494dd796077a30be1231d475a0647a91240389fd26bde777359"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2019/site=tetouan/part.parquet",
+        "bytes": 38003,
+        "sha256": "61a5f11720521a224d7d72549d1bca89c276c7c503ea318837ae087ce7b619d0"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=agadir/part.parquet",
+        "bytes": 36206,
+        "sha256": "caee589ff7460ac465742ab4f0f5fa8917b4fae6c2a83c78843e530d02b4635e"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=beni-mellal/part.parquet",
+        "bytes": 38197,
+        "sha256": "fbf983fd082ede430761446ec98ca5f96d462d063716b0628aa5b3b6fbf23bd4"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=casablanca/part.parquet",
+        "bytes": 35801,
+        "sha256": "0605898b017697949ad3a1e99ffc7745764b6055a25b3bf3f15d3380e922d05a"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=errachidia/part.parquet",
+        "bytes": 34375,
+        "sha256": "bcfe7040f898685318916d243cb44ef6607373d63625c2f28655af8e9f6b75a3"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=fes/part.parquet",
+        "bytes": 39014,
+        "sha256": "391759f9adedbd8d269aa2781a5ef33918df0834cfd861192363f1c00ae40c95"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=marrakech/part.parquet",
+        "bytes": 37612,
+        "sha256": "4675f01496a583b04c5cc3c0770a0fe5cb9a15a419c9eb0811d8f1dbd47ce730"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=meknes/part.parquet",
+        "bytes": 37394,
+        "sha256": "0fda10c142162234747a697b0017f50b57ec5d425e9469ce38e577b184bc9399"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=ouarzazate/part.parquet",
+        "bytes": 34533,
+        "sha256": "e3fd10583baefdf4ee790903827df557f3686f6aa21c98a8f308ae5054a7ed28"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=oujda/part.parquet",
+        "bytes": 38677,
+        "sha256": "e467bd6c89c915b89e72f298ca713f06e87fbe651756324786f77f3b3e91cd76"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=rabat/part.parquet",
+        "bytes": 38109,
+        "sha256": "ca1ae5f9932b00c79606a3e8da1f303e01354f35548761138a389bca06ba07f2"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=tangier/part.parquet",
+        "bytes": 38951,
+        "sha256": "f3cc8ab685fd9039701e8e288fcf8b6fb384ea3bd9d929812d09643ed7d2b1dc"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2020/site=tetouan/part.parquet",
+        "bytes": 38878,
+        "sha256": "5367f1d103011f6bbdb84afc33e5380db052dad3b332fc475db9f8a8f5efb6f0"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=agadir/part.parquet",
+        "bytes": 37633,
+        "sha256": "8819283f3321a109f34a99db8121b7edfed917e5c2356ed0781860c6f23773e6"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=beni-mellal/part.parquet",
+        "bytes": 38202,
+        "sha256": "ccd58e4e642d9db16d4e408d54877f4c99785630a5d6d1ad355f93eea0a16188"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=casablanca/part.parquet",
+        "bytes": 37463,
+        "sha256": "7216e46b21c7b6c05f30ec97c727883e07a0240feafd51e9ead0a7eef4ec8ec8"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=errachidia/part.parquet",
+        "bytes": 34843,
+        "sha256": "591d050e2743c8677e793efbb05fbb46a9b77a6018eba5e8ee406b7431858731"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=fes/part.parquet",
+        "bytes": 39052,
+        "sha256": "761bba15d98b655a192ca93ed0d32eafbcb6c9a3d52edf420f3cd8e94840c0ed"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=marrakech/part.parquet",
+        "bytes": 37706,
+        "sha256": "67fe59cd7f4d37211afd23725951e8e8c78d597ea8f577343efe1297c07ae69d"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=meknes/part.parquet",
+        "bytes": 37423,
+        "sha256": "d90a693828358e4be14c8b87ef028ccf4087c4dc23c165b3e51fa0969bd81181"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=ouarzazate/part.parquet",
+        "bytes": 35834,
+        "sha256": "5f5bb3001657e491000ee889b1a9e2058e189059007243f01f19a24e933a90a1"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=oujda/part.parquet",
+        "bytes": 38622,
+        "sha256": "03df12f113412e8902d9616ed845b87b5ace8b091eb455e22f0a2210013e05f0"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=rabat/part.parquet",
+        "bytes": 38403,
+        "sha256": "c16e495d49487ae22e404df654df1def2d192c0ec893c5a86f6f48db74ecc706"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=tangier/part.parquet",
+        "bytes": 38723,
+        "sha256": "7364804d6e98d59d1c7201acfe0c0ba153fcd35b8095dcf041a6402a97414031"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2021/site=tetouan/part.parquet",
+        "bytes": 38733,
+        "sha256": "602622bae85482d737577ab708bb18673ec9ffd144b7e3bd228488bd7fe585e1"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=agadir/part.parquet",
+        "bytes": 36157,
+        "sha256": "5f3ce48cf48ba7883533a6079560dfe30249f8937d2214ab51b986a941df4302"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=beni-mellal/part.parquet",
+        "bytes": 37813,
+        "sha256": "ee5281746f72ceebb5166f20c9e19876d6026d51b0dd1460387db80de37ade97"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=casablanca/part.parquet",
+        "bytes": 36591,
+        "sha256": "76d64312a24369eb3e61944d758dc11896d46ffe85ab88dd15cb8f98d4c09ba6"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=errachidia/part.parquet",
+        "bytes": 34961,
+        "sha256": "d4463034dff31908bb2dbfe6116b8d33cd337c75bd775cd856b53b166e36958a"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=fes/part.parquet",
+        "bytes": 38332,
+        "sha256": "2a11fe49a7b45a1563261029cbf4cff05ce2c142419de421ce45888fe944a58e"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=marrakech/part.parquet",
+        "bytes": 37216,
+        "sha256": "6b39c5248ffb47b0c71f0fc309c28d4e78503d1c2f38c49d6a8b3c4c817ec0ad"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=meknes/part.parquet",
+        "bytes": 36799,
+        "sha256": "f9f643d071c25b2be24895ac1231da940df25daecd12a2e754db94040bc5567d"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=ouarzazate/part.parquet",
+        "bytes": 34988,
+        "sha256": "a0abab95b34c972f807efb4ddadd6e76d87ca26406a481367260f619dd1384e6"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=oujda/part.parquet",
+        "bytes": 38561,
+        "sha256": "2338f4817a3d46db2d6629565bf145ca9a7b7f6641554cb358bb7a77750e15c6"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=rabat/part.parquet",
+        "bytes": 37499,
+        "sha256": "0411b1b5a1d7e2556b4e82954b161fe884e49b51b8c25f059f9f344e104b1dc3"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=tangier/part.parquet",
+        "bytes": 37914,
+        "sha256": "f372fc81c6d5322690f7d37edad41204f027e3220475e1acae8d9a0df1278697"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2022/site=tetouan/part.parquet",
+        "bytes": 38075,
+        "sha256": "08bde90365b6a1e9398cc6481a1ccd1f8bf18cb0f591d18850fc7ece8cd06448"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=agadir/part.parquet",
+        "bytes": 36143,
+        "sha256": "becf54fc95349c7131ff8f3b844daff3cd4c67e7182b6a07c428ec5769b7432e"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=beni-mellal/part.parquet",
+        "bytes": 37711,
+        "sha256": "22b2db20b7e516be4b2f3f48ef3f3bf321c756a1e29bdd88f11af173fd095387"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=casablanca/part.parquet",
+        "bytes": 37179,
+        "sha256": "578d8195d49bdd13eb452d5ec2b5604ffea031de59d772c32ad032efb8a5e279"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=errachidia/part.parquet",
+        "bytes": 34505,
+        "sha256": "5794cb1e8e93ccf72363390ea070741ae54ff48f19feb6cb24878ac58284f53a"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=fes/part.parquet",
+        "bytes": 37109,
+        "sha256": "7f83ea47141da5f7f241f9469de29e6db6f2b9773b62e187f54e898474b96931"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=marrakech/part.parquet",
+        "bytes": 37143,
+        "sha256": "28537d5239043090f74b31370d08a910f792c52a9f899cdc9894ed36be73a8c1"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=meknes/part.parquet",
+        "bytes": 36823,
+        "sha256": "80aeca7a31391dd7284014dc5b3fa0dbcf9ddd3be7321e8f491c7f718d7b1a78"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=ouarzazate/part.parquet",
+        "bytes": 34776,
+        "sha256": "7e0fdd0f7990562814fb59e2be0fac739bc71e419c3a564455fe569279d896ef"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=oujda/part.parquet",
+        "bytes": 37727,
+        "sha256": "a7b829e9113838b7ed7a256928609ea86c24df26ea9e0dea42fd30fd74a34437"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=rabat/part.parquet",
+        "bytes": 37853,
+        "sha256": "3d79409d85b0d85f0779cfdda7c84adbd134603257379e4a842cc1fecb1e58f4"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=tangier/part.parquet",
+        "bytes": 38109,
+        "sha256": "387b560f49f580c24d2907e886d67620cae43ef26df1fd6dc52f81019ba32d78"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2023/site=tetouan/part.parquet",
+        "bytes": 37938,
+        "sha256": "1602d98163692680853d6cf8acc08dc023cdc7a1a1b48c6160263a807b05a48c"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=agadir/part.parquet",
+        "bytes": 34573,
+        "sha256": "4c089e95eb19b260ce8ae2527e38fa6484dc7f6b6b63dcb171dc19a30844e85d"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=beni-mellal/part.parquet",
+        "bytes": 37999,
+        "sha256": "cf0e7cfafcbeb7a0c8a031433c912333380456bce5577acd5ab4551b2e4bfc86"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=casablanca/part.parquet",
+        "bytes": 35984,
+        "sha256": "ffbd176692cd8294397fee168650f5530951a19d14fdf100f4e091436d6227f7"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=errachidia/part.parquet",
+        "bytes": 36326,
+        "sha256": "f23f9fa148c5ed0a40f77ded654b1b5c44c11e78b24ec4a84de1e5e00508a632"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=fes/part.parquet",
+        "bytes": 39090,
+        "sha256": "ff83b814d7cd7a4e1ee342e0027a8ac6a4434d9674dcfd6ca28bad13a9ef0646"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=marrakech/part.parquet",
+        "bytes": 37138,
+        "sha256": "8d2d264357c0f10d1b11ba5b782d1377c77afb76b6e39b7cf9bf430c3402422c"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=meknes/part.parquet",
+        "bytes": 37300,
+        "sha256": "89e0afddfb6d00fb5bafa01c03555107916259bd7bd4bb0ea6416816191a9ea7"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=ouarzazate/part.parquet",
+        "bytes": 34789,
+        "sha256": "6ea0e76728b434e0c76f89cbd1187af7649ecb6abb260f5eb87aee028778d5bf"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=oujda/part.parquet",
+        "bytes": 38027,
+        "sha256": "2864e67b45e289505aa63911bc3882d67ad8e9eac95b07a96c01ce5516594319"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=rabat/part.parquet",
+        "bytes": 38299,
+        "sha256": "1166fecfd42b26d61934f6446219f58138b0a7d97483b4ede6b320f119bc1843"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=tangier/part.parquet",
+        "bytes": 38723,
+        "sha256": "366a7bd0e84425fe6d5f7a3a22ac6f67eb252e90be928c7733235c8ee3c5243c"
+      },
+      {
+        "path": "bronze/era5_hourly/year=2024/site=tetouan/part.parquet",
+        "bytes": 38651,
+        "sha256": "5ca96d183677e9c2e3f75ca186abf076ecb734d9e8f01f29da2e99f89c577cb8"
+      }
+    ],
+    "locations": [
+      {
+        "path": "bronze/locations/part.parquet",
+        "bytes": 2744,
+        "sha256": "76e4da13c68a9d3a34a8787889dc94362ef1d655d9c31d8a25de1a026ccec068"
+      }
+    ],
+    "osm_services": [
+      {
+        "path": "bronze/osm_services/part.parquet",
+        "bytes": 318484,
+        "sha256": "ca33aee8ea3e46bdf91e44ba5514df485087a89d5413baf731044c51dff104da"
+      }
+    ],
+    "osm_roads": [
+      {
+        "path": "bronze/osm_roads/part.parquet",
+        "bytes": 929,
+        "sha256": "551378278c1865f5f614ee0902b8dabb44d8904f495443dbe2de3ba5e440f945"
+      }
+    ],
+    "source_audit": [
+      {
+        "path": "bronze/source_audit/part.parquet",
+        "bytes": 2938,
+        "sha256": "8c18380497e1140fafcd6e080c3e59042eb902077056bda71d555c79881f9662"
+      }
+    ]
+  },
+  "source_manifest": "metadata/climate_downloads.json"
+}

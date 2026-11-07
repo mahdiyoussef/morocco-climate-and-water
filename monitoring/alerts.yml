@@ -1,0 +1,28 @@
+groups:
+  - name: morocco_quality_and_operations
+    rules:
+      - alert: MoroccoPublicationMissing
+        expr: morocco_publication_exists == 0
+        for: 30m
+        labels: {severity: warning}
+        annotations: {summary: 'No successful production Gold publication has been recorded.'}
+      - alert: MoroccoPublicationStale
+        expr: time() - morocco_pipeline_last_success_timestamp_seconds > 3888000
+        for: 30m
+        labels: {severity: warning}
+        annotations: {summary: 'Gold pipeline has not published successfully in 45 days. Observation years remain 2015–2024.'}
+      - alert: MoroccoDataQualityFailed
+        expr: morocco_dbt_failed_checks > 0 or morocco_quarantined_rows > 0
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: 'Medallion validation failed; inspect Airflow and dbt artifacts before publishing.'}
+      - alert: MoroccoDependencyUnavailable
+        expr: morocco_dependency_reachable == 0
+        for: 10m
+        labels: {severity: warning}
+        annotations: {summary: 'An internal pipeline dependency is unreachable.'}
+      - alert: MoroccoClimateVolumeBelowRequirement
+        expr: morocco_verified_climate_source_bytes <= 1073741824
+        for: 10m
+        labels: {severity: warning}
+        annotations: {summary: 'Verified climate source volume must exceed 1 GiB.'}

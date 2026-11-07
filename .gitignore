@@ -1,0 +1,136 @@
+# Credentials and machine-local environment settings
+.env
+.env.*
+!.env.example
+!.env.*.example
+!.env.template
+!.env.*.template
+.envrc.local
+**/.streamlit/secrets.toml
+**/.streamlit/secrets.*.toml
+!**/.streamlit/secrets.example.toml
+!**/.streamlit/secrets.template.toml
+.aws/
+.docker/
+.codex/auth.json
+.codex/sessions/
+.codex/log/
+.codex/cache/
+/secrets/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Python environments, downloaded runtimes and packaging output
+/.tools/
+.venv/
+venv/
+env/
+ENV/
+.envs/
+.conda/
+.direnv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+.python_packages/
+build/
+dist/
+
+# Test, coverage, lint and notebook caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.pyre/
+.hypothesis/
+.tox/
+.nox/
+.cache/
+.ipynb_checkpoints/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Provider downloads, intermediate layers and local platform state
+# Keep data/gold/, data/metadata/, docs/ and the entire prod/ app versioned.
+/data/raw/
+/data/landing/
+/data/processed/
+/data/bronze/
+/data/silver/
+/data/quarantine/
+/data/warehouse/
+/data/runtime/
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+spark-warehouse/
+metastore_db/
+derby.log
+
+# dbt build output and downloaded packages; keep profiles.yml and lock files
+/dbt/target/
+/dbt/logs/
+/dbt/dbt_packages/
+/dbt/.cache/
+/dbt/.user.yml
+
+# Local Airflow configuration and metadata; keep DAG source code
+/airflow/logs/
+/airflow/airflow.db
+/airflow/airflow.cfg
+/airflow.db
+/airflow.cfg
+/webserver_config.py
+
+# Partial transfers, runtime logs and temporary files
+*.partial
+*.partial.*
+*.landing-partial*
+*.part
+*.part.*
+*.log
+*.log.*
+*.pid
+*.pid.lock
+*.tmp
+*.temp
+
+# Power BI local state and compiled reports; keep PBIP/PBIR, DAX and queries
+powerbi/**/.pbi/
+powerbi/**/*.pbix
+
+# Generated convenience archive; deployable source and Gold data stay in prod/
+/prod-streamlit.zip
+
+# Editor and operating-system files
+.idea/
+.vscode/
+*.code-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Trashes/
+.Spotlight-V100/
+.Trash-*/
+.directory
+
+# Browser automation debug output (keep docs/screenshots/ images versioned)
+/playwright-report/
+/test-results/

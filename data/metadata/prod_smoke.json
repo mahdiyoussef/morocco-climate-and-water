@@ -1,0 +1,20 @@
+{
+  "publication_id": "44c63fc5134047d39e63f48dc115b37b",
+  "pages_passed": [
+    "Overview",
+    "Indicators",
+    "Climate explorer",
+    "Compare locations",
+    "Water & climate insights",
+    "Infrastructure",
+    "Data & methodology"
+  ],
+  "network": "disabled by Docker",
+  "inherited_backend": null,
+  "pipeline_package_available": false,
+  "requirements_match_runtime": true,
+  "empty_months_preserve_annual_profiles": true,
+  "empty_locations_recovery": true,
+  "app_sha256": "3964e10e7761b4b756704ca8b1d7f7a7aa023fc5f846879efc57d377a69e43d7",
+  "bundle_manifest_sha256": "aaf9e761dd5ee0d2fa755e2be4abe2a3824ecd5dd3f39201913bec1ef11cac27"
+}

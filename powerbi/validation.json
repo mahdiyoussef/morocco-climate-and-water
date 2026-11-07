@@ -1,0 +1,10 @@
+{
+  "pbir_json_documents_validated": 41,
+  "pbip_validated": true,
+  "gold_table_source_contracts_validated": 9,
+  "serving_source": "PostgreSQL",
+  "live_postgresql_source_verified": false,
+  "relationship_and_visual_bindings_validated": true,
+  "power_bi_desktop_rendering_verified": false,
+  "limitation": "Power BI Desktop is required to execute DAX, refresh the model and verify visual rendering."
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "limitations",
+  "position": {
+    "x": 660,
+    "y": 110,
+    "width": 590,
+    "height": 105,
+    "z": 770,
+    "tabOrder": 770
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Source archive size is global, not Morocco-only. CHIRPS is rainfall estimation; ERA5-Land is reanalysis. Sample sites are not national averages. OSM objects do not establish service completeness or causal climate impacts.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "12pt",
+                      "color": "#19382E"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

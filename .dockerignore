@@ -1,0 +1,10 @@
+.git
+.tools
+.env
+.env.*
+data
+**/__pycache__
+**/.pytest_cache
+dbt/target
+dbt/logs
+*.partial

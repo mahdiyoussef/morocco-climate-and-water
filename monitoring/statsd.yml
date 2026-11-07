@@ -1,0 +1,15 @@
+mappings:
+  - match: 'morocco.rows.*.*'
+    name: morocco_medallion_rows
+    labels: {stage: '$1', table: '$2'}
+  - match: 'morocco.dq.rejected.*'
+    name: morocco_quarantined_rows
+    labels: {table: '$1'}
+  - match: 'morocco.duration.*'
+    name: morocco_stage_duration_seconds
+    labels: {stage: '$1'}
+  - match: 'airflow.ti.finish.*.*.*'
+    name: airflow_task_finished_total
+    labels: {dag: '$1', task: '$2', state: '$3'}
+  - match: 'airflow.*'
+    name: 'airflow_$1'

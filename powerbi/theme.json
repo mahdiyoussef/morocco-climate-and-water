@@ -1,0 +1,7 @@
+{
+  "name": "Morocco Observatory",
+  "dataColors": ["#19745B", "#C18B55", "#6B9CB0", "#9BB77C", "#AC6E55", "#6E8981", "#D6BB80", "#8E839F"],
+  "background": "#F5F7F3",
+  "foreground": "#19382E",
+  "tableAccent": "#19745B"
+}

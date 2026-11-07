@@ -1,0 +1,38 @@
+{
+  "verified_at": "2026-11-06T19:36:24.228527+00:00",
+  "project_root": "/media/youssef/40B5-BC331/Cargo-analytics/airline-cargo-platform",
+  "publication_id": "fdce732d634a484ba59d45a2d0ade5a5",
+  "indicator_count": 24,
+  "regression_tests_passed": 8,
+  "standalone_app": {
+    "publication_id": "fdce732d634a484ba59d45a2d0ade5a5",
+    "pages_passed": [
+      "Overview",
+      "Indicators",
+      "Climate explorer",
+      "Compare locations",
+      "Water & climate insights",
+      "Infrastructure",
+      "Data & methodology"
+    ],
+    "network": "disabled by Docker",
+    "inherited_backend": "postgres",
+    "pipeline_package_available": false,
+    "requirements_match_runtime": true,
+    "empty_months_preserve_annual_profiles": true,
+    "empty_locations_recovery": true,
+    "app_sha256": "53af2e3f9765b256753343d4f607e3acd1aaf4a15aa93d309fff01f0eab8f2e6",
+    "bundle_manifest_sha256": "313de4efe2c2632da62b5ee4a911961f0e6d2d0d33083e995bd29ed2087a257b"
+  },
+  "live_dashboard_http_health": 200,
+  "live_postgres_indicator_empty_months_passed": true,
+  "bundle_files": 31,
+  "bundle_bytes": 2999777,
+  "archive_bytes": 460670,
+  "archive_sha256": "3ed101f91100f618e727799d34201ab62f361adbfc9d439a9eb0859ec1daf1ff",
+  "manifest_and_archive_integrity_passed": true,
+  "local_credentials_excluded": true,
+  "cloud_deployed": false,
+  "visual_browser_verified": false,
+  "visual_check_limit": "CUA could not initialize because the Codex workspace retains the previous drive mount path."
+}

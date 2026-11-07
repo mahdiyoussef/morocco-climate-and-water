@@ -1,0 +1,49 @@
+// Generated from the native semantic model; create each as a measure.
+
+Rainfall mm =
+AVERAGEX(SUMMARIZE(ClimateMonthly, ClimateMonthly[site], ClimateMonthly[year]), CALCULATE(SUM(ClimateMonthly[rainfall_mm])))
+
+Mean Temperature C =
+AVERAGEX(VALUES(Locations[id]), CALCULATE(DIVIDE(SUMX(ClimateMonthly, ClimateMonthly[temperature_c] * ClimateMonthly[hours]), SUM(ClimateMonthly[hours]))))
+
+Surface Soil Moisture Percent =
+100 * AVERAGEX(VALUES(Locations[id]), CALCULATE(DIVIDE(SUMX(ClimateMonthly, ClimateMonthly[soil_moisture] * ClimateMonthly[hours]), SUM(ClimateMonthly[hours]))))
+
+Rainfall Reference 2015 mm =
+VAR SelectedMonths = VALUES('Calendar'[month]) RETURN CALCULATE([Rainfall mm], REMOVEFILTERS('Calendar'), 'Calendar'[year] = 2015, TREATAS(SelectedMonths, 'Calendar'[month]))
+
+Rainfall Change Percent =
+DIVIDE([Rainfall mm] - [Rainfall Reference 2015 mm], [Rainfall Reference 2015 mm])
+
+Downloaded Climate GB =
+SUM(SourceAudit[bytes]) / 1000000000
+
+Climate Observation Months =
+COUNTROWS(ClimateMonthly)
+
+Mapped Water Objects =
+SUM(Infrastructure[water])
+
+Mapped Healthcare Objects =
+SUM(Infrastructure[healthcare])
+
+Mapped Education Objects =
+SUM(Infrastructure[education])
+
+Mapped Road km =
+SUM(Infrastructure[road_km])
+
+Rainfall Baseline Departure Percent =
+DIVIDE(SUM(SeasonalDepartures[rainfall_mm]) - SUM(SeasonalDepartures[baseline_rainfall_mm]), SUM(SeasonalDepartures[baseline_rainfall_mm]))
+
+Complete Water Year Rainfall mm =
+AVERAGEX(FILTER(WaterYears, WaterYears[is_complete] = TRUE()), WaterYears[rainfall_mm])
+
+Rainfall Trend mm Per Year =
+AVERAGE(LocationTrends[rainfall_slope_mm_per_year])
+
+Temperature Trend C Per Decade =
+AVERAGE(LocationTrends[temperature_slope_c_per_decade])
+
+Footprint Monthly Rainfall mm =
+AVERAGE(FootprintRainfall[area_weighted_rainfall_mm])

@@ -1,0 +1,14 @@
+[
+  {"id":"tangier","name":"Tangier","lat":35.7595,"lon":-5.8340,"zone":"Strait & Rif"},
+  {"id":"tetouan","name":"Tetouan","lat":35.5785,"lon":-5.3684,"zone":"Strait & Rif"},
+  {"id":"rabat","name":"Rabat","lat":34.0209,"lon":-6.8416,"zone":"Atlantic coast"},
+  {"id":"casablanca","name":"Casablanca","lat":33.5731,"lon":-7.5898,"zone":"Atlantic coast"},
+  {"id":"fes","name":"Fes","lat":34.0331,"lon":-5.0003,"zone":"Northern interior"},
+  {"id":"meknes","name":"Meknes","lat":33.8935,"lon":-5.5473,"zone":"Northern interior"},
+  {"id":"oujda","name":"Oujda","lat":34.6814,"lon":-1.9086,"zone":"Eastern plateau"},
+  {"id":"beni-mellal","name":"Beni Mellal","lat":32.3373,"lon":-6.3498,"zone":"Atlas foothills"},
+  {"id":"marrakech","name":"Marrakech","lat":31.6295,"lon":-7.9811,"zone":"Atlas foothills"},
+  {"id":"agadir","name":"Agadir","lat":30.4278,"lon":-9.5981,"zone":"Souss & Atlantic"},
+  {"id":"ouarzazate","name":"Ouarzazate","lat":30.9335,"lon":-6.9370,"zone":"Southern interior"},
+  {"id":"errachidia","name":"Errachidia","lat":31.9314,"lon":-4.4244,"zone":"Southern interior"}
+]

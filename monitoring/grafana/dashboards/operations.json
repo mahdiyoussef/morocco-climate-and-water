@@ -1,0 +1,322 @@
+{
+  "uid": "morocco-operations",
+  "title": "Morocco \u00b7 Data Platform Operations",
+  "schemaVersion": 40,
+  "version": 1,
+  "refresh": "30s",
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Verified climate source volume",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "morocco_verified_climate_source_bytes",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bytes"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "title": "Gold location-months",
+      "type": "stat",
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "morocco_gold_location_months",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "title": "Last successful publication",
+      "type": "stat",
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "morocco_pipeline_last_success_timestamp_seconds * 1000",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "dateTimeAsIso"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "title": "Failed dbt nodes",
+      "type": "stat",
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "morocco_dbt_failed_checks",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "title": "Medallion row counts",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "morocco_medallion_rows",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "title": "Internal dependency probes",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "morocco_dependency_reachable",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "title": "Quarantined records",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "morocco_quarantined_rows",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 8,
+      "title": "Task completions by state",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 24,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by(state) (airflow_task_finished_total)",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 9,
+      "title": "PostgreSQL availability",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 0,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "pg_up",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 10,
+      "title": "Scrape targets",
+      "type": "timeseries",
+      "gridPos": {
+        "x": 12,
+        "y": 32,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "morocco-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "up",
+          "legendFormat": "{{service}}{{stage}} {{table}}{{state}} {{job}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none"
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 11,
+      "title": "Airflow task logs",
+      "type": "logs",
+      "gridPos": {
+        "x": 0,
+        "y": 40,
+        "w": 24,
+        "h": 10
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "morocco-loki"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "{job=\"morocco_airflow\"}"
+        }
+      ],
+      "options": {
+        "showTime": true
+      }
+    }
+  ],
+  "tags": [
+    "morocco",
+    "medallion",
+    "dbt"
+  ]
+}

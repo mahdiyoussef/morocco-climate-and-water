@@ -1,0 +1,18 @@
+{
+  "dataset": "OpenStreetMap / Geofabrik",
+  "verified_at": "2026-11-06T19:35:12.567842+00:00",
+  "files": [
+    {
+      "path": "data/raw/osm/morocco.osm.pbf",
+      "url": "https://download.geofabrik.de/africa/morocco-latest.osm.pbf",
+      "bytes": 244273101,
+      "sha256": "44930f5cc4ade0d65b79a72f82cf9dbe70e7eaa08648caf7c23194a2142f17b0"
+    },
+    {
+      "path": "data/raw/osm/morocco.poly",
+      "url": "https://download.geofabrik.de/africa/morocco.poly",
+      "bytes": 2383,
+      "sha256": "ebdb411139e60929150dfcfff1e12674fb0f6675bb5e6c615e77cd6c5ed6d53e"
+    }
+  ]
+}

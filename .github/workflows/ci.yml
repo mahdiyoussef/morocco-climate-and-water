@@ -1,0 +1,22 @@
+name: Morocco platform
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Install verification and dashboard dependencies
+        run: pip install -r observatory/requirements-platform-local.txt -r dashboard/requirements.txt pytest
+      - name: Prepare local configuration
+        run: python observatory/setup_platform.py
+      - name: Validate Compose configuration
+        run: docker compose --env-file .env.morocco -f docker-compose.yml config --quiet
+      - name: Parse dbt project
+        run: dbt parse --project-dir dbt --profiles-dir dbt --target local
+      - name: Verify numerical behavior and dashboard pages
+        run: python -m pytest tests
+      - name: Validate Power BI documents
+        run: python observatory/validate_powerbi.py
+      # Full dbt builds use ignored 2+ GB source inputs; cluster smoke runs are separate.

@@ -1,0 +1,12 @@
+{
+  "climate_source_bytes": 2006505094,
+  "minimum_size_passed": true,
+  "joined_location_months": 1440,
+  "rainfall_grid_records": 3251040,
+  "era5_hourly_records": 1052064,
+  "locations": 12,
+  "months": 120,
+  "foreign_keys_and_numeric_ranges_passed": true,
+  "old_downloaded_airline_data_removed": true,
+  "custom_web_dashboard_removed": true
+}

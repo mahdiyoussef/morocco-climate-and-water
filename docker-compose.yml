@@ -1,0 +1,301 @@
+name: observatory
+
+x-storage-env: &storage-env
+  MINIO_ENDPOINT: http://minio:9000
+  AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:?Run observatory/setup_platform.py first}
+  AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:?Run observatory/setup_platform.py first}
+  AWS_REGION: us-east-1
+
+x-airflow-env: &airflow-env
+  <<: *storage-env
+  AIRFLOW__CORE__EXECUTOR: LocalExecutor
+  AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/airflow
+  AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+  AIRFLOW__WEBSERVER__SECRET_KEY: ${AIRFLOW_SECRET_KEY}
+  AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+  AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+  AIRFLOW__CORE__PARALLELISM: '2'
+  AIRFLOW__CORE__DAGS_FOLDER: /workspace/airflow/dags
+  AIRFLOW__METRICS__STATSD_ON: 'true'
+  AIRFLOW__METRICS__STATSD_HOST: statsd-exporter
+  AIRFLOW__METRICS__STATSD_PORT: '8125'
+  AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+  SERVING_DB_HOST: postgres
+  PIPELINE_WRITER_PASSWORD: ${PIPELINE_WRITER_PASSWORD}
+  BI_READER_PASSWORD: ${BI_READER_PASSWORD}
+  SPARK_THRIFT_HOST: spark-thrift-server
+  DBT_RUN_RESULTS: /workspace/data/metadata/dbt_run_results.json
+  STATSD_HOST: statsd-exporter
+  PYTHONPATH: /workspace
+
+x-airflow: &airflow
+  image: morocco-airflow:local
+  build:
+    context: .
+    dockerfile: docker/airflow/Dockerfile
+  user: '${AIRFLOW_UID:-50000}:0'
+  environment: *airflow-env
+  volumes:
+    - ./observatory:/workspace/observatory:ro
+    - ./airflow/dags:/workspace/airflow/dags:ro
+    - ./dbt:/workspace/dbt
+    - ./data:/workspace/data
+    - raw_cache:/workspace/data/raw
+    - processed_cache:/workspace/data/processed
+    - bronze_cache:/workspace/data/bronze
+    - airflow_logs:/opt/airflow/logs
+    - ivy_cache:/home/airflow/.ivy2
+  depends_on:
+    postgres: {condition: service_healthy}
+    minio: {condition: service_healthy}
+    minio-init: {condition: service_completed_successfully}
+
+services:
+  minio:
+    image: morocco-minio:local
+    build: {context: ., dockerfile: docker/minio/Dockerfile}
+    command: server /data --console-address ':9001'
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      MINIO_PROMETHEUS_AUTH_TYPE: public
+    ports: ['127.0.0.1:9000:9000', '127.0.0.1:9001:9001']
+    volumes: [minio_data:/data]
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:9000/minio/health/live']
+      interval: 15s
+      retries: 10
+      timeout: 5s
+  postgres:
+    image: postgres:16@sha256:5a65324fe84dc41709ff914e90b07f3e2f577073ed27bf917d4873aca0c9ec51
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: platform
+      PIPELINE_WRITER_PASSWORD: ${PIPELINE_WRITER_PASSWORD}
+      BI_READER_PASSWORD: ${BI_READER_PASSWORD}
+    ports: ['127.0.0.1:${POSTGRES_HOST_PORT:-5433}:5432']
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sh:/docker-entrypoint-initdb.d/10-morocco.sh:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U "$${POSTGRES_USER}" -d platform']
+      interval: 10s
+      retries: 15
+  minio-init:
+    image: morocco-dashboard:local
+    command: [python, -m, observatory.storage, init]
+    environment:
+      <<: *storage-env
+      OBSERVATORY_CACHE_ROOT: /cache
+      OBSERVATORY_CACHE_UID: ${AIRFLOW_UID:-50000}
+    volumes:
+      - ./observatory:/workspace/observatory:ro
+      - raw_cache:/cache/raw
+      - processed_cache:/cache/processed
+      - bronze_cache:/cache/bronze
+      - ivy_cache:/cache/ivy
+    depends_on:
+      minio: {condition: service_healthy}
+  hive-metastore:
+    build: {context: ., dockerfile: docker/hive/Dockerfile}
+    environment:
+      <<: *storage-env
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      postgres: {condition: service_healthy}
+      minio-init: {condition: service_completed_successfully}
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'bash', '-c', 'echo > /dev/tcp/127.0.0.1/9083']
+      interval: 10s
+      timeout: 5s
+      retries: 60
+  spark-master:
+    image: morocco-spark:local
+    build: {context: ., dockerfile: docker/spark/Dockerfile}
+    command: [master]
+    environment: *storage-env
+    ports: ['127.0.0.1:8082:8080']
+  spark-worker-1: &worker
+    image: morocco-spark:local
+    command: [worker]
+    environment: *storage-env
+    depends_on: [spark-master]
+    volumes: ['./observatory:/workspace/observatory:ro']
+  spark-worker-2:
+    <<: *worker
+  spark-thrift-server:
+    image: morocco-spark:local
+    command: [thrift]
+    environment: *storage-env
+    volumes: [ivy_cache:/root/.ivy2]
+    depends_on:
+      hive-metastore: {condition: service_healthy}
+      spark-worker-1: {condition: service_started}
+      spark-worker-2: {condition: service_started}
+    ports: ['127.0.0.1:10000:10000', '127.0.0.1:4040:4040']
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'python', '-c', "import socket; socket.create_connection(('127.0.0.1', 10000), 3).close()"]
+      interval: 15s
+      timeout: 5s
+      retries: 60
+  airflow-init:
+    <<: *airflow
+    command:
+      - bash
+      - -c
+      - |
+        set -euo pipefail
+        airflow db migrate
+        if ! airflow users list --output json | grep -q '"username": "admin"'; then
+          airflow users create --username admin --password "$${AIRFLOW_ADMIN_PASSWORD}" --firstname Morocco --lastname Admin --role Admin --email admin@localhost.invalid
+        fi
+    environment:
+      <<: *airflow-env
+      AIRFLOW_ADMIN_PASSWORD: ${AIRFLOW_ADMIN_PASSWORD}
+  airflow-webserver:
+    <<: *airflow
+    command: webserver
+    ports: ['127.0.0.1:8080:8080']
+    depends_on:
+      airflow-init: {condition: service_completed_successfully}
+    restart: unless-stopped
+  airflow-scheduler:
+    <<: *airflow
+    command: scheduler
+    depends_on:
+      airflow-init: {condition: service_completed_successfully}
+      spark-thrift-server: {condition: service_healthy}
+    restart: unless-stopped
+  redis:
+    image: redis:7.2-alpine
+    command: [redis-server, --maxmemory, 128mb, --maxmemory-policy, allkeys-lru]
+    volumes: [redis_data:/data]
+  streamlit:
+    image: morocco-dashboard:local
+    build: {context: ., dockerfile: docker/streamlit/Dockerfile}
+    environment:
+      <<: *storage-env
+      OBSERVATORY_DATA_BACKEND: postgres
+      SERVING_DB_HOST: postgres
+      SERVING_DB_NAME: observatory
+      BI_READER_PASSWORD: ${BI_READER_PASSWORD}
+      REDIS_URL: redis://redis:6379/0
+    ports: ['127.0.0.1:8501:8501']
+    depends_on: [postgres, redis]
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'python', '-c', "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=5)"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+  dbt-docs:
+    image: python:3.12-alpine
+    command: [python, -m, http.server, '8080', --directory, /docs]
+    volumes: ['./dbt/target:/docs:ro']
+    ports: ['127.0.0.1:8091:8080']
+  statsd-exporter:
+    image: prom/statsd-exporter:v0.28.0
+    command: ['--statsd.mapping-config=/etc/statsd/mapping.yml', '--statsd.listen-udp=:8125', '--statsd.listen-tcp=:8125']
+    volumes: ['./monitoring/statsd.yml:/etc/statsd/mapping.yml:ro']
+  platform-metrics:
+    image: morocco-dashboard:local
+    command: [python, -m, observatory.metrics]
+    volumes: ['./data:/workspace/data:ro']
+    depends_on: [postgres, hive-metastore, airflow-scheduler]
+  postgres-exporter-serving:
+    image: prometheuscommunity/postgres-exporter:v0.16.0
+    environment:
+      DATA_SOURCE_NAME: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/observatory?sslmode=disable
+    depends_on:
+      postgres: {condition: service_healthy}
+  prometheus:
+    image: prom/prometheus:v3.2.1
+    command: ['--config.file=/etc/prometheus/prometheus.yml', '--storage.tsdb.retention.time=15d']
+    ports: ['127.0.0.1:9090:9090']
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+      - prometheus_data:/prometheus
+  grafana:
+    image: grafana/grafana:11.6.0
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+      GF_USERS_ALLOW_SIGN_UP: 'false'
+    ports: ['127.0.0.1:3000:3000']
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+  loki:
+    image: grafana/loki:3.4.2
+    command: ['-config.file=/etc/loki/local-config.yaml']
+    volumes: [loki_data:/loki]
+  promtail:
+    image: grafana/promtail:3.4.2
+    command: ['-config.file=/etc/promtail/config.yml']
+    volumes:
+      - ./monitoring/promtail.yml:/etc/promtail/config.yml:ro
+      - airflow_logs:/var/log/airflow:ro
+      - promtail_positions:/positions
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    command: ['--config.file=/etc/alertmanager/alertmanager.yml']
+    volumes: ['./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro', 'alertmanager_data:/alertmanager']
+    ports: ['127.0.0.1:9093:9093']
+  superset-init:
+    profiles: [exploration]
+    image: morocco-superset:local
+    build: {context: ., dockerfile: docker/superset/Dockerfile}
+    environment: &superset-env
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+      SUPERSET_METADATA_URI: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/superset
+      SUPERSET_ADMIN_PASSWORD: ${SUPERSET_ADMIN_PASSWORD}
+      BI_READER_PASSWORD: ${BI_READER_PASSWORD}
+    entrypoint: /bin/bash
+    command: ['-c', 'set -e; superset db upgrade; if ! superset fab list-users | grep -q "username:admin"; then superset fab create-admin --username admin --firstname Morocco --lastname Admin --email admin@localhost.invalid --password "$${SUPERSET_ADMIN_PASSWORD}"; fi; superset init; python /app/pythonpath/bootstrap.py']
+    depends_on:
+      postgres: {condition: service_healthy}
+  superset:
+    profiles: [exploration]
+    image: morocco-superset:local
+    environment: *superset-env
+    ports: ['127.0.0.1:8088:8088']
+    depends_on:
+      superset-init: {condition: service_completed_successfully}
+      redis: {condition: service_started}
+  node-exporter:
+    profiles: [linux-host]
+    image: prom/node-exporter:v1.9.0
+    command: ['--path.rootfs=/host']
+    volumes: ['/:/host:ro,rslave']
+    pid: host
+  cadvisor:
+    profiles: [linux-host]
+    image: gcr.io/cadvisor/cadvisor:v0.49.2
+    privileged: true
+    volumes: ['/:/rootfs:ro', '/var/run:/var/run:ro', '/sys:/sys:ro', '/var/lib/docker:/var/lib/docker:ro', '/dev/disk:/dev/disk:ro']
+
+networks:
+  default:
+    name: observatory-net
+
+volumes:
+  raw_cache:
+  processed_cache:
+  bronze_cache:
+  ivy_cache:
+    name: observatory_ivy_cache
+  airflow_logs:
+  minio_data:
+  postgres_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+  loki_data:
+  promtail_positions:
+  alertmanager_data:

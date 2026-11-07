@@ -1,0 +1,119 @@
+{
+  "verified_at": "2026-11-06T18:45:37.173080+00:00",
+  "distributed_stack_executed": true,
+  "publication_id": "fdce732d634a484ba59d45a2d0ade5a5",
+  "airflow": {
+    "run_id": "manual__2026-11-06T18:30:31.442207+00:00",
+    "state": "success",
+    "tasks": {
+      "decode_provider_formats": "success",
+      "acquire_and_verify": "success",
+      "upload_verified_raw_landing": "success",
+      "upload_verified_minio_landing": "success",
+      "spark_bronze": "success",
+      "spark_silver_quality_gate": "success",
+      "dbt_build_gold": "success",
+      "dbt_document_lineage": "success",
+      "publish_tested_bi_snapshot": "success"
+    }
+  },
+  "landing_objects_verified": 24,
+  "raw_source_bytes": 2250780578,
+  "delta_commits": {
+    "bronze": {
+      "chirps_grid": 1,
+      "chirps_sites": 1,
+      "era5_hourly": 1,
+      "locations": 1,
+      "osm_services": 1,
+      "osm_roads": 1,
+      "source_audit": 1
+    },
+    "silver": {
+      "chirps_grid": 1,
+      "chirps_sites": 1,
+      "era5_hourly": 1,
+      "locations": 1,
+      "osm_services": 1,
+      "osm_roads": 1,
+      "source_audit": 1
+    },
+    "gold": {
+      "dim_location": 1,
+      "dim_month": 1,
+      "fact_climate_monthly": 1,
+      "fact_infrastructure": 1,
+      "source_audit": 1,
+      "mart_monthly_anomalies": 1,
+      "mart_water_year": 1,
+      "mart_site_trends": 1,
+      "mart_spatial_rainfall": 1
+    }
+  },
+  "gold_row_counts": {
+    "dim_location": 12,
+    "dim_month": 120,
+    "fact_climate_monthly": 1440,
+    "fact_infrastructure": 12,
+    "source_audit": 20,
+    "mart_monthly_anomalies": 1440,
+    "mart_water_year": 132,
+    "mart_site_trends": 12,
+    "mart_spatial_rainfall": 120
+  },
+  "dbt_target": "spark",
+  "streamlit_http_health": 200,
+  "dbt": {
+    "target": "spark",
+    "statuses": {
+      "success": 11,
+      "pass": 32,
+      "no-op": 2
+    }
+  },
+  "streamlit_app_tests": {
+    "backend": "postgres",
+    "publication_id": "fdce732d634a484ba59d45a2d0ade5a5",
+    "pages_passed": [
+      "Overview",
+      "Climate explorer",
+      "Compare locations",
+      "Water & climate insights",
+      "Infrastructure",
+      "Data & methodology"
+    ],
+    "empty_filter_recovery_passed": true,
+    "browser_rendering_verified": false
+  },
+  "browser_check_limitation": "In-app browser initialization timed out; HTTP health and all six Streamlit AppTest pages passed.",
+  "silver": {
+    "chirps_grid": {
+      "accepted": 3251040,
+      "rejected": 0
+    },
+    "chirps_sites": {
+      "accepted": 1440,
+      "rejected": 0
+    },
+    "era5_hourly": {
+      "accepted": 1052064,
+      "rejected": 0
+    },
+    "locations": {
+      "accepted": 12,
+      "rejected": 0
+    },
+    "osm_services": {
+      "accepted": 8652,
+      "rejected": 0
+    },
+    "osm_roads": {
+      "accepted": 12,
+      "rejected": 0
+    },
+    "source_audit": {
+      "accepted": 20,
+      "rejected": 0
+    }
+  }
+}

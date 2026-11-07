@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "limits",
+  "position": {
+    "x": 28,
+    "y": 665,
+    "width": 1220,
+    "height": 105,
+    "z": 693,
+    "tabOrder": 693
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "dbt Gold marts: a five-year reference is not a 30-year normal or an official drought index. Incomplete water years are excluded from totals. Slopes are descriptive, without significance tests or forecasts. The footprint mean is not an official national statistic.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "12pt",
+                      "color": "#19382E"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

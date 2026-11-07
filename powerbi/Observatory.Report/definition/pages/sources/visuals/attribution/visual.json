@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "attribution",
+  "position": {
+    "x": 28,
+    "y": 650,
+    "width": 1220,
+    "height": 115,
+    "z": 678,
+    "tabOrder": 678
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Sources: UCSB CHC CHIRPS v3 · Copernicus ERA5-Land via Open-Meteo (CC BY 4.0; free API for non-commercial use) · © OpenStreetMap contributors / Geofabrik (ODbL). Reference rainfall year: 2015; this is a comparison, not a long-term climate normal.",
+                    "textStyle": {
+                      "fontFamily": "Segoe UI",
+                      "fontSize": "12pt",
+                      "color": "#19382E"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
