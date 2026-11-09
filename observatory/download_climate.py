@@ -88,7 +88,7 @@ def inspect(path, year):
             raise ValueError(f'Expected 12 monthly time steps in {path.name}')
         times = ds.variables['time']
         dates = netCDF4.num2date(times[:], times.units)
-        if any(d.year != year for d in dates) or {d.month for d in dates} != set(range(1, 13)):
+        if [(d.year, d.month) for d in dates] != [(year, month) for month in range(1, 13)]:
             raise ValueError(f'Unexpected dates in {path.name}')
         return {'validation': 'NetCDF opened; precipitation variable and all 12 months verified',
                 'dimensions': dict(zip(precip.dimensions, precip.shape)), 'units': getattr(precip, 'units', None)}

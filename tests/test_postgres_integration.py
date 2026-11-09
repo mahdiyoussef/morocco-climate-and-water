@@ -71,3 +71,77 @@ def test_failed_publication_keeps_previous_snapshot(published):
     with connection() as conn:
         assert conn.execute('select publication_id from gold.publication where singleton').fetchone()[0] == receipt['publication_id']
         assert conn.execute('select count(*) from gold.fact_climate_monthly').fetchone()[0] == 1440
+
+
+@pytest.mark.skipif(os.environ.get('OBSERVATORY_GUARDRAIL_INTEGRATION') != '1',
+                    reason='Requires local Spark and a disposable MinIO endpoint')
+def test_guardrail_service_recovery(published, tmp_path, monkeypatch):
+    from jinja2 import Environment
+    from pyspark.sql import SparkSession
+    from observatory import promotion, publish
+    from observatory.serving import PROMOTION_LOCK, current_promotion, publication_session
+    from observatory.storage import client, put_file
+
+    s3 = client()
+    s3.create_bucket(Bucket='landing')
+    s3.create_bucket(Bucket='exports')
+    spark = (SparkSession.builder.master('local[1]').appName('guardrail-integration')
+             .config('spark.ui.enabled', 'false').config('spark.sql.shuffle.partitions', 1).getOrCreate())
+    try:
+        parquet = tmp_path / 'spark-audit'
+        spark.createDataFrame([(2024, 'CHIRPS v3'), (2024, 'ERA5-Land')], ['year', 'dataset']).write.parquet(str(parquet))
+        original = next(parquet.glob('*.parquet'))
+        entry = put_file(s3, original, 'landing', 'fixture/audit.parquet')
+        copy_path = tmp_path / 'audit.parquet'
+        copy_path.write_bytes(promotion.verified_body(s3, 'landing', entry))
+        spark.read.parquet(str(copy_path)).createOrReplaceTempView('source_audit')
+        spark.range(1, 13).selectExpr('2024 as year', 'id as month').createOrReplaceTempView('dim_month')
+        query = (ROOT / 'dbt/tests/calendar_source_coverage.sql').read_text()
+        sql_text = Environment().from_string(query).render(ref=lambda name: name)
+        assert spark.sql(sql_text).count() == 0
+        spark.range(1, 12).selectExpr('2024 as year', 'id as month').createOrReplaceTempView('dim_month')
+        assert [row.year for row in spark.sql(sql_text).collect()] == [2024]
+    finally:
+        spark.stop()
+
+    staged, snapshot, assets, build, _ = published
+    version = 'guardrail-integration'
+    counts = {table: len(value['rows']) for table, value in staged.items()}
+    stage = tmp_path / 'exports'
+    stage.mkdir()
+    publish.write_csvs(stage, staged)
+    snapshot = {**snapshot, 'meta': {**snapshot['meta'], 'publication_id': version}}
+    for name, payload in {**assets, 'snapshot.json': snapshot, 'dbt_run_results.json': build,
+                          'provenance.json': {'publication_id': version, 'tables': counts}}.items():
+        (stage / name).write_text(json.dumps(payload))
+    files = [put_file(s3, path, 'exports', f'observatory/runs/{version}/{path.name}') for path in stage.iterdir()]
+    receipt = {'publication_id': version, 'tables': counts, 'files': files, 'complete': False,
+               'logical_date': '2024-01-01T00:00:00+00:00', 'published_at': '2024-01-01T00:00:00+00:00'}
+
+    publish_tables(staged, snapshot, assets, build, version, promotion=receipt)
+    monkeypatch.setattr(publish, 'DATA', tmp_path / 'data')
+    monkeypatch.setattr(publish, 'client', lambda: s3)
+    actual_put = s3.put_object
+    with publication_session() as conn:
+        with connection('writer', autocommit=True) as concurrent:
+            assert not concurrent.execute('select pg_try_advisory_lock(%s)', (PROMOTION_LOCK,)).fetchone()[0]
+        assert current_promotion(conn) == receipt
+        with monkeypatch.context() as inject:
+            def fail_pointer(**kwargs):
+                if kwargs['Key'] == promotion.CURRENT:
+                    raise OSError('injected pointer failure')
+                return actual_put(**kwargs)
+            inject.setattr(s3, 'put_object', fail_pointer)
+            with pytest.raises(OSError, match='injected pointer'):
+                promotion.finish(conn, s3, publish.DATA, receipt)
+        assert not current_promotion(conn)['complete']
+    assert load_postgres_bundle()['publication_id'] == version
+
+    publish.repair()
+    publish.repair()
+    with publication_session() as conn:
+        assert current_promotion(conn)['complete']
+    pointer = json.loads(s3.get_object(Bucket='exports', Key=promotion.CURRENT)['Body'].read())
+    local = json.loads((publish.DATA / 'gold/snapshot.json').read_text())
+    assert pointer['publication_id'] == local['meta']['publication_id'] == version
+    assert not (publish.DATA / 'gold/.promotion-pending').exists()

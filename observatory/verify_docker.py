@@ -9,7 +9,8 @@ from psycopg import sql
 
 from observatory.contracts import TABLES
 from observatory.serving import connection
-from observatory.storage import DATA, client
+from observatory.storage import DATA, RAW_MANIFEST, client, read_manifest
+from observatory.run_scope import run_key
 from observatory.warehouse import GOLD_TABLES, validate_dbt_results
 
 
@@ -28,7 +29,8 @@ def main():
             raise ValueError('All nine Airflow stages must be successful')
         airflow = {'run_id': run.run_id, 'state': run.state, 'tasks': tasks}
     s3 = client()
-    raw = json.loads(s3.get_object(Bucket='landing', Key='observatory/metadata/raw_manifest.json')['Body'].read())
+    key = run_key(airflow['run_id'])
+    raw, _ = read_manifest(s3, RAW_MANIFEST, key)
     for entry in raw['files']:
         remote = s3.head_object(Bucket='landing', Key=entry['key'])
         if remote['ContentLength'] != entry['bytes'] or remote['Metadata'].get('sha256') != entry['sha256']:
@@ -39,7 +41,7 @@ def main():
                 for obj in page.get('Contents', [])]
         delta[bucket] = {}
         for table in tables:
-            prefix = f'{"morocco" if bucket == "gold" else "observatory"}/{table}/_delta_log/'
+            prefix = f'{"morocco" if bucket == "gold" else "observatory"}/runs/{key}/{table}/_delta_log/'
             commits = [key for key in keys if key.startswith(prefix) and key.endswith('.json')]
             if not commits:
                 raise ValueError(f'Missing Delta commits for {bucket}.{table}')
@@ -58,14 +60,15 @@ def main():
     try:
         cursor = spark.cursor()
         for table, count in counts.items():
-            cursor.execute(f'select count(*) from gold.{table}')
+            cursor.execute(f'select count(*) from gold_{key}.{table}')
             if cursor.fetchone()[0] != count:
                 raise ValueError(f'Spark/PostgreSQL reconciliation failed for {table}')
     finally:
         spark.close()
     pointer = json.loads(s3.get_object(Bucket='exports', Key='observatory/current.json')['Body'].read())
-    if pointer['publication_id'] != marker[0]:
-        raise ValueError('MinIO exports and PostgreSQL publication IDs differ')
+    local = json.loads((DATA / 'gold/snapshot.json').read_text())['meta']['publication_id']
+    if not (pointer['publication_id'] == marker[0] == local == key):
+        raise ValueError('Airflow, MinIO, local exports and PostgreSQL publication IDs differ')
     with urlopen('http://streamlit:8501/_stcore/health', timeout=10) as response:
         health = response.status
         if health != 200:

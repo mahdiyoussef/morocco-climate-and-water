@@ -25,16 +25,24 @@ def file_signature(root: Path) -> tuple:
 
 def load_bundle(root: Path) -> dict:
     gold = root / 'gold'
+    pending = gold / '.promotion-pending'
+    if pending.exists():
+        raise ValueError('Local Gold publication is awaiting recovery')
+    signature = file_signature(root)
     missing = [name for name in REQUIRED if not (gold / name).is_file()]
     if missing:
         raise ValueError('Missing processed data: ' + ', '.join(missing) + '. Run observatory/warehouse.py local-all first.')
+    snapshot_path = gold / 'snapshot.json'
+    snapshot_bytes = snapshot_path.read_bytes()
+    snapshot = json.loads(snapshot_bytes)
     tables = {p.stem: pd.read_csv(p, dtype={'site': str, 'year_month': str}) for p in gold.glob('*.csv')}
-    snapshot = json.loads((gold / 'snapshot.json').read_text(encoding='utf-8'))
     metadata = {}
     for key, filename in [('acquisition', 'climate_downloads.json'), ('era5', 'era5_downloads.json'),
                           ('verification', 'processing_verification.json'), ('dbt', 'dbt_run_results.json')]:
         path = root / 'metadata' / filename
         metadata[key] = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {}
+    if pending.exists() or file_signature(root) != signature or snapshot_path.read_bytes() != snapshot_bytes:
+        raise ValueError('Local Gold changed while loading. Retry after publication completes.')
     return build_bundle(tables, snapshot, metadata, root)
 
 

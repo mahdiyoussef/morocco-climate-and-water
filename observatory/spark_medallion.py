@@ -9,6 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from observatory.contracts import TABLES, cast_query, dedupe_query, validity
+from observatory.run_scope import DATA, active_key, receipt_path, schema, write_json
 
 
 def emit(name, value):
@@ -39,37 +40,79 @@ def session():
 
 def run(stage):
     from pyspark.sql import functions as F
+    key = active_key()
+    namespace = schema(stage)
+    quarantine = schema('quarantine')
+    prefix = f'observatory/runs/{key}' if key else 'observatory'
+    if stage == 'bronze' or key:
+        from observatory.storage import STAGING_MANIFEST, client, read_manifest, staged_inputs
+        s3 = client()
+        if key:
+            _, manifest_digest = read_manifest(s3, STAGING_MANIFEST, key)
+            evidence = receipt_path().parent
+            if stage == 'silver':
+                previous = json.loads((evidence / 'bronze.json').read_text())
+                if previous['manifest_sha256'] != manifest_digest:
+                    raise ValueError('Normalized Landing changed after Bronze')
+        if stage == 'bronze':
+            inputs = staged_inputs(s3)
+            if key and read_manifest(s3, STAGING_MANIFEST, key)[1] != manifest_digest:
+                raise ValueError('Normalized Landing changed while reading Bronze inputs')
     spark = session()
     started = time.time()
     audits = []
+    table = None
+    report = {'run_key': key, 'stage': stage, 'status': 'running', 'tables': audits}
+    report_path = DATA / 'metadata' / f'quality_spark_{stage}.json'
+    if key:
+        (evidence / f'{stage}.json').unlink(missing_ok=True)
+        write_json(report_path, report)
     try:
-        spark.sql(f"create database if not exists {stage} location 's3a://{stage}/morocco'")
+        spark.sql(f"create database if not exists {namespace} location 's3a://{stage}/{prefix}'")
         if stage == 'silver':
-            spark.sql("create database if not exists quarantine location 's3a://silver/observatory/_quarantine'")
+            spark.sql(f"create database if not exists {quarantine} location 's3a://silver/{prefix}/_quarantine'")
         for table in TABLES:
             if stage == 'bronze':
-                frame = spark.read.option('recursiveFileLookup', 'true').parquet(f's3a://landing/observatory/normalized/{table}/')
+                frame = spark.read.option('recursiveFileLookup', 'true').parquet(*inputs[table])
+                if not frame.take(1):
+                    raise ValueError(f'{table}: empty Bronze input; Gold publication blocked')
                 frame = (frame.withColumn('_row_hash', F.sha2(F.to_json(F.struct(*[F.col(c) for c in frame.columns])), 256))
                          .withColumn('_source_file', F.input_file_name()).withColumn('_ingested_at', F.current_timestamp()))
-                frame.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').option('path', f's3a://bronze/observatory/{table}').saveAsTable(f'bronze.{table}')
-                count = spark.table(f'bronze.{table}').count()
+                frame.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').option('path', f's3a://bronze/{prefix}/{table}').saveAsTable(f'{namespace}.{table}')
+                count = spark.table(f'{namespace}.{table}').count()
                 audits.append({'table': table, 'accepted': count, 'rejected': 0})
             else:
-                spark.sql(cast_query(table)).createOrReplaceTempView('candidates')
+                spark.sql(cast_query(table, bronze_schema=schema('bronze'))).createOrReplaceTempView('candidates')
+                candidates = spark.table('candidates')
+                if not candidates.take(1):
+                    raise ValueError(f'{table}: empty Silver input; Gold publication blocked')
                 rejected = spark.sql(f"select *, 'invalid_contract' as reject_reason from candidates where not coalesce(({validity(table)}), false)")
-                rejected.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').option('path', f's3a://silver/observatory/_quarantine/{table}').saveAsTable(f'quarantine.{table}')
+                rejected.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').option('path', f's3a://silver/{prefix}/_quarantine/{table}').saveAsTable(f'{quarantine}.{table}')
                 rejected_count = rejected.count()
                 emit(f'dq.rejected.{table}', rejected_count)
+                input_count = candidates.count() if key else None
                 if rejected_count:
+                    audits.append({'table': table, 'input_rows': input_count, 'accepted': 0,
+                                   'rejected': rejected_count, 'duplicates': 0})
                     raise ValueError(f'{table}: {rejected_count} records quarantined; Gold publication blocked')
                 clean = spark.sql(dedupe_query(table))
-                clean.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').option('path', f's3a://silver/observatory/{table}').saveAsTable(f'silver.{table}')
-                count = spark.table(f'silver.{table}').count()
-                audits.append({'table': table, 'accepted': count, 'rejected': rejected_count})
+                clean.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').option('path', f's3a://silver/{prefix}/{table}').saveAsTable(f'{namespace}.{table}')
+                count = spark.table(f'{namespace}.{table}').count()
+                audits.append({'table': table, 'accepted': count, 'rejected': rejected_count,
+                               'input_rows': input_count, 'duplicates': input_count - count if key else 0})
             emit(f'rows.{stage}.{table}', count)
             print(json.dumps({'stage': stage, **audits[-1]}), flush=True)
         emit(f'duration.{stage}', time.time() - started)
+        if key:
+            report.update(status='passed', manifest_sha256=manifest_digest)
+            write_json(evidence / f'{stage}.json', report)
+    except Exception:
+        report.update(status='failed', rule=f'{stage}_input_contract', partition=table,
+                      expected='nonempty valid input', actual='stage failed')
+        raise
     finally:
+        if key:
+            write_json(report_path, report)
         spark.stop()
 
 

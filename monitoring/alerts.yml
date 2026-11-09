@@ -26,3 +26,23 @@ groups:
         for: 10m
         labels: {severity: warning}
         annotations: {summary: 'Verified climate source volume must exceed 1 GiB.'}
+      - alert: MoroccoGuardrailFailed
+        expr: morocco_guardrail_failed > 0
+        for: 1m
+        labels: {severity: critical}
+        annotations: {summary: 'A pipeline guardrail failed. Inspect the stage quality report for the run and rule.'}
+      - alert: MoroccoPromotionPending
+        expr: morocco_promotion_pending > 0
+        for: 10m
+        labels: {severity: critical}
+        annotations: {summary: 'Gold promotion is incomplete. Run the documented repair command.'}
+      - alert: MoroccoSeasonalDrift
+        expr: morocco_seasonal_drift_warnings > 0
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: 'The candidate Gold snapshot differs from the previous seasonal baseline.'}
+      - alert: MoroccoSourceVerificationStale
+        expr: (time() - morocco_source_verified_timestamp_seconds > 3888000) and (morocco_source_verified_timestamp_seconds > 0)
+        for: 30m
+        labels: {severity: warning}
+        annotations: {summary: 'Provider input verification is more than 45 days old.'}

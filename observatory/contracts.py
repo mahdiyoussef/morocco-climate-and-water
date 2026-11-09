@@ -3,26 +3,26 @@ TABLES = {
     'chirps_grid': ({'year': ('year', 'int'), 'month': ('month', 'int'), 'lat': ('lat', 'double'), 'lon': ('lon', 'double'), 'rainfall_mm': ('rainfall_mm', 'double')},
                     ['year', 'month', 'lat', 'lon'], 'year between 1981 and 2100 and month between 1 and 12 and lat between -90 and 90 and lon between -180 and 180 and rainfall_mm >= 0'),
     'chirps_sites': ({'site': ('site', 'string'), 'year': ('year', 'int'), 'month': ('month', 'int'), 'rainfall_mm': ('rainfall_mm', 'double'), 'chirps_lat': ('chirps_lat', 'double'), 'chirps_lon': ('chirps_lon', 'double')},
-                     ['site', 'year', 'month'], "site <> '' and month between 1 and 12 and rainfall_mm >= 0"),
+                     ['site', 'year', 'month'], "site <> '' and year between 1981 and 2100 and month between 1 and 12 and rainfall_mm >= 0 and chirps_lat between -90 and 90 and chirps_lon between -180 and 180"),
     'era5_hourly': ({'site': ('site', 'string'), 'observed_at': ('time', 'timestamp'), 'temperature_c': ('temperature_c', 'double'), 'soil_moisture': ('soil_moisture', 'double')},
                     ['site', 'observed_at'], "site <> '' and temperature_c between -60 and 65 and soil_moisture between 0 and 1"),
     'locations': ({'id': ('id', 'string'), 'name': ('name', 'string'), 'zone': ('zone', 'string'), 'lat': ('lat', 'double'), 'lon': ('lon', 'double'), 'era5_lat': ('era5_lat', 'double'), 'era5_lon': ('era5_lon', 'double')},
-                  ['id'], "id <> '' and lat between -90 and 90 and lon between -180 and 180"),
+                  ['id'], "id <> '' and lat between -90 and 90 and lon between -180 and 180 and era5_lat between -90 and 90 and era5_lon between -180 and 180"),
     'osm_services': ({'site': ('site', 'string'), 'osm_id': ('osm_id', 'string'), 'category': ('category', 'string'), 'name': ('name', 'string'), 'lat': ('lat', 'double'), 'lon': ('lon', 'double')},
                      ['site', 'osm_id'], "site <> '' and category in ('water','healthcare','education') and lat between -90 and 90 and lon between -180 and 180"),
     'osm_roads': ({'site': ('site', 'string'), 'road_km': ('road_km', 'double')}, ['site'], "site <> '' and road_km >= 0"),
     'source_audit': ({'dataset': ('dataset', 'string'), 'year': ('year', 'int'), 'path': ('path', 'string'), 'bytes': ('bytes', 'bigint'), 'sha256': ('sha256', 'string')},
-                     ['dataset', 'year'], 'bytes > 0 and length(sha256) = 64'),
+                     ['dataset', 'year'], "bytes > 0 and length(sha256) = 64 and length(translate(lower(sha256), '0123456789abcdef', '')) = 0"),
 }
 
 
-def cast_query(table, engine='spark'):
+def cast_query(table, engine='spark', bronze_schema='bronze'):
     fields = TABLES[table][0]
     casts = []
     for name, (expression, kind) in fields.items():
         dtype = 'varchar' if kind == 'string' and engine != 'spark' else kind
         casts.append(f'try_cast({expression} as {dtype}) as {name}')
-    return 'select ' + ', '.join(casts) + ', _ingested_at, _source_file, _row_hash from bronze.' + table
+    return 'select ' + ', '.join(casts) + ', _ingested_at, _source_file, _row_hash from ' + bronze_schema + '.' + table
 
 
 def validity(table):

@@ -6,12 +6,12 @@ Downloads are cached; errors never fall back to generated observations.
 from __future__ import annotations
 
 import argparse
-import calendar
 import hashlib
 import json
 import math
 import time
 from collections import defaultdict
+from datetime import datetime, timedelta
 from pathlib import Path
 
 import numpy as np
@@ -97,8 +97,11 @@ def read_rain(years, geometry):
                 win = from_bounds(left, bottom, right, top, src.transform).round_offsets().round_lengths()
                 values = src.read(month, window=win, masked=True)
                 transform = src.window_transform(win)
-                valid = geometry_mask([geometry], values.shape, transform, invert=True) & ~np.ma.getmaskarray(values) & (values.data >= 0)
+                valid = (geometry_mask([geometry], values.shape, transform, invert=True)
+                         & ~np.ma.getmaskarray(values) & np.isfinite(values.data) & (values.data >= 0))
                 rr, cc = np.where(valid)
+                if not len(rr):
+                    raise ValueError(f'No valid CHIRPS footprint cells for {year}-{month:02d}')
                 xx, yy = rasterio.transform.xy(transform, rr, cc)
                 grid_count += len(rr)
                 table = pa.table({'year': [year] * len(rr), 'month': [month] * len(rr),
@@ -112,7 +115,7 @@ def read_rain(years, geometry):
                     patch = src.read(month, window=rasterio.windows.Window(col - 2, row - 2, 5, 5), masked=True)
                     candidates = [(float((r - 2) ** 2 + (c - 2) ** 2), r, c)
                                   for r in range(patch.shape[0]) for c in range(patch.shape[1])
-                                  if not np.ma.getmaskarray(patch)[r, c] and patch.data[r, c] >= 0]
+                                  if not np.ma.getmaskarray(patch)[r, c] and np.isfinite(patch.data[r, c]) and patch.data[r, c] >= 0]
                     if not candidates:
                         raise ValueError(f'No valid CHIRPS pixel near {site["name"]}')
                     _, r, c = min(candidates)
@@ -138,15 +141,16 @@ def read_era5(years):
         data = json.loads(path.read_text())
         if not isinstance(data, list) or len(data) != len(SITES):
             raise ValueError('Unexpected Open-Meteo response or missing locations')
-        for site, payload in zip(SITES, data):
+        start = datetime(year, 1, 1)
+        expected = (datetime(year + 1, 1, 1) - start).days * 24
+        expected_times = [(start + timedelta(hours=hour)).isoformat(timespec='minutes') for hour in range(expected)]
+        for site, payload in zip(SITES, data, strict=True):
             hours = payload['hourly']
-            expected = (366 if calendar.isleap(year) else 365) * 24
-            if (len(hours['time']) != expected or len(set(hours['time'])) != expected
-                    or hours['time'][0] != f'{year}-01-01T00:00'
-                    or hours['time'][-1] != f'{year}-12-31T23:00'):
-                raise ValueError(f'Incomplete ERA5 year for {site["id"]}')
+            if (hours['time'] != expected_times or len(hours['temperature_2m']) != expected
+                    or len(hours['soil_moisture_0_to_7cm']) != expected):
+                raise ValueError(f'Incomplete or misaligned ERA5 year {year} for {site["id"]}')
             rows = []
-            for t, temp, soil in zip(hours['time'], hours['temperature_2m'], hours['soil_moisture_0_to_7cm']):
+            for t, temp, soil in zip(hours['time'], hours['temperature_2m'], hours['soil_moisture_0_to_7cm'], strict=True):
                 if temp is None or soil is None:
                     raise ValueError(f'Missing ERA5 values for {site["id"]} {t}')
                 if not -60 <= temp <= 65 or not 0 <= soil <= 1:

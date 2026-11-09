@@ -94,10 +94,16 @@ def prepare_sources(from_landing=False):
     era = json.loads((DATA / 'metadata/era5_downloads.json').read_text())
     audit = [{'dataset': 'CHIRPS v3', 'year': r['year'], 'path': r['path'], 'bytes': r['bytes'], 'sha256': r['sha256']} for r in meta['files']]
     audit += [{'dataset': 'ERA5-Land', 'year': int(Path(path).stem.rsplit('_', 1)[1]), 'path': path, 'bytes': r['bytes'], 'sha256': r['sha256']} for path, r in era['files'].items()]
+    for dataset in ('CHIRPS v3', 'ERA5-Land'):
+        recorded_years = sorted(row['year'] for row in audit if row['dataset'] == dataset)
+        if recorded_years != years:
+            raise ValueError(f'{dataset}: source audit must record each requested year exactly once')
     save('source_audit', audit)
     manifest = {'tables': {}, 'source_manifest': 'metadata/climate_downloads.json'}
     for table in TABLES:
         files = sorted((bronze / table).rglob('*.parquet'))
+        if not files:
+            raise ValueError(f'{table}: no normalized Parquet files produced')
         manifest['tables'][table] = [{'path': str(p.relative_to(DATA)).replace('\\', '/'), 'bytes': p.stat().st_size,
                                       'sha256': hashlib.sha256(p.read_bytes()).hexdigest()} for p in files]
     (DATA / 'metadata/bronze_inputs.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
@@ -106,6 +112,8 @@ def prepare_sources(from_landing=False):
     extraction = {'meta': {'title': 'Morocco Climate & Water Observatory', 'dashboard': 'Power BI + Streamlit',
                            'built_at': datetime.now(timezone.utc).isoformat(), 'years': years,
                            'reference_year': years[0], 'baseline_period': [2015, 2019], 'site_count': len(SITES),
+                           'site_ids': [site['id'] for site in SITES],
+                           'site_list_sha256': hashlib.sha256((ROOT / 'observatory/sites.json').read_bytes()).hexdigest(),
                            'chirps_grid_records': sum(pq.read_metadata(p).num_rows for p in (bronze / 'chirps_grid').rglob('*.parquet')),
                            'era5_hourly_records': sum(pq.read_metadata(p).num_rows for p in (bronze / 'era5_hourly').rglob('*.parquet')),
                            'osm': json.loads((PROCESSED / 'osm_stats.json').read_text()),
@@ -126,7 +134,7 @@ def local_silver():
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     con = duckdb.connect(str(DB_PATH))
     con.execute("set threads=2")
-    con.execute("set memory_limit='512MB'")
+    con.execute('set memory_limit = ?', [os.environ.get('OBSERVATORY_DUCKDB_MEMORY_LIMIT', '1GB')])
     con.execute('set preserve_insertion_order=false')
     con.execute("set timezone='UTC'")
     con.execute('create schema if not exists bronze')
@@ -140,6 +148,9 @@ def local_silver():
         source_rows = con.execute('select count(*) from candidates').fetchone()[0]
         con.execute(f'create or replace table quarantine.{table} as select *, \'invalid_contract\' as reject_reason from candidates where not coalesce(({validity(table)}), false)')
         rejected = con.execute(f'select count(*) from quarantine.{table}').fetchone()[0]
+        if not source_rows:
+            con.close()
+            raise ValueError(f'{table}: empty Bronze input; publishing blocked')
         if rejected:
             con.close()
             raise ValueError(f'{table}: {rejected} invalid records quarantined; publishing blocked')

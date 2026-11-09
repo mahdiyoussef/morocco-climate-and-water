@@ -20,3 +20,52 @@ jobs:
       - name: Validate Power BI documents
         run: python observatory/validate_powerbi.py
       # Full dbt builds use ignored 2+ GB source inputs; cluster smoke runs are separate.
+
+  guardrail-recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install fixture dependencies
+        run: pip install -r observatory/requirements-platform-local.txt -r dashboard/requirements.txt pytest 'pyspark==3.5.3'
+      - name: Build the project MinIO image
+        run: docker build -f docker/minio/Dockerfile -t morocco-minio:guardrail .
+      - name: Test Spark, MinIO and PostgreSQL recovery
+        env:
+          OBSERVATORY_POSTGRES_TESTS: '1'
+          OBSERVATORY_GUARDRAIL_INTEGRATION: '1'
+          OBSERVATORY_ENV_FILE: /dev/null
+          SPARK_LOCAL_IP: 127.0.0.1
+          SERVING_DB_HOST: 127.0.0.1
+          SERVING_DB_PORT: '55432'
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: guardrail-test-admin
+          PIPELINE_WRITER_PASSWORD: guardrail-test-writer
+          BI_READER_PASSWORD: guardrail-test-reader
+          MINIO_ENDPOINT: http://127.0.0.1:59000
+          AWS_ACCESS_KEY_ID: guardrail-test
+          AWS_SECRET_ACCESS_KEY: guardrail-test-secret
+        run: |
+          postgres=$(docker run -d --rm -p 127.0.0.1:55432:5432 -e POSTGRES_PASSWORD postgres:16)
+          trap 'docker stop "$postgres" >/dev/null' EXIT
+          minio=$(docker run -d --rm -p 127.0.0.1:59000:9000 \
+            -e MINIO_ROOT_USER="$AWS_ACCESS_KEY_ID" -e MINIO_ROOT_PASSWORD="$AWS_SECRET_ACCESS_KEY" \
+            morocco-minio:guardrail server /data)
+          trap 'docker stop "$minio" "$postgres" >/dev/null' EXIT
+          for attempt in $(seq 1 30); do
+            if docker exec "$postgres" pg_isready -h 127.0.0.1 -U postgres \
+              && curl -fsS "$MINIO_ENDPOINT/minio/health/live"; then
+              break
+            fi
+            sleep 1
+          done
+          docker exec "$postgres" pg_isready -h 127.0.0.1 -U postgres
+          curl -fsS "$MINIO_ENDPOINT/minio/health/live"
+          python -m pytest -q tests/test_postgres_integration.py

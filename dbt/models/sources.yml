@@ -1,7 +1,7 @@
 version: 2
 sources:
   - name: silver
-    schema: silver
+    schema: "{{ env_var('OBSERVATORY_SILVER_SCHEMA', 'silver') }}"
     description: Typed, deduplicated and quality-gated source records. Spark/Delta on MinIO in the platform; DuckDB in local verification.
     tables:
       - name: chirps_grid
